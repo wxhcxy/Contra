@@ -1,6 +1,8 @@
 import Felgo
 import QtQuick
 import"entities"
+import "scenes"
+
 GameWindow {
 
   activeScene: gameScene
@@ -11,7 +13,7 @@ GameWindow {
     entityContainer: gameScene.container
   }
 
-  Scene {
+  GameScene {
     id: gameScene
 
     // set scene alignment
