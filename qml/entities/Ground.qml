@@ -4,13 +4,10 @@ import Felgo
 EntityBase {
     id:_ground
     property alias color: _ba.color
-    property alias groundWidth: _ba.width
-    property alias groundHeight: _ba.height
     entityId: "barrier"
     entityType: "barrier1"
     width: 32
     height: 32
-
 
     Rectangle {
         id:_ba

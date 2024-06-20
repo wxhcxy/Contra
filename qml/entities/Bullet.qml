@@ -14,6 +14,15 @@ EntityBase{
     property point velocity  //子弹的速度矢量
     property int bulletType: 0  //子弹样式，就是不同的子弹图片，得到一些奖励机制后，可能会升级子弹
 
+
+    Rectangle{
+        id:bulletImg
+        width: 12
+        height: 12
+        radius: 6
+    }
+
+    /*
     Image {
         id:bulletImg
         width: 14
@@ -32,6 +41,7 @@ EntityBase{
         }
 
     }
+    */
     onEntityDestroyed: {
         console.log("子弹被销毁")
     }

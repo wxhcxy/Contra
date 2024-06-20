@@ -7,10 +7,7 @@ GameWindow {
 
   activeScene: gameScene
 
-  EntityManager {
-    id: entityManager
-    entityContainer: gameScene
-  }
+
 
 GameScene {
     id: gameScene
