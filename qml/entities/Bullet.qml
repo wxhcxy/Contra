@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Felgo 4.0
-
+import "../Controller.js" as Ctrler
 EntityBase{
     id:_bullet
     entityId: "bullet"
@@ -53,6 +53,10 @@ EntityBase{
         width: bullet.width
         height: bullet.height
         collisionTestingOnlyMode: true
+        fixture.onBeginContact:(other,contactNormal)=>{
+                        Ctrler.entityBeginCrash(other,contactNormal)
+
+                }
     }
 
 
@@ -74,9 +78,9 @@ EntityBase{
         }
     }
 
-    Timer{  //子弹发射1.8秒后，就销毁子弹实体
+    Timer{  //子弹发射3秒后，就销毁子弹实体
         running: true
-        interval: 1800
+        interval: 3000
         onTriggered: {
             _bullet.destroy()
         }
