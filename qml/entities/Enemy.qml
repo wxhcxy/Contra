@@ -4,6 +4,7 @@ import Felgo 4.0
 EntityBase {
     id:_enemyEntityBase
     property alias source: _enemy.source
+    property alias boxCollider: _boxCollider
     entityId: "enemy"
 
     MultiResolutionImage{
@@ -12,7 +13,7 @@ EntityBase {
     }
 
     BoxCollider{
-        id:collider
+        id:_boxCollider
         implicitWidth: _enemyEntityBase.width
         implicitHeight:_enemyEntityBase.height
         anchors.fill:parent

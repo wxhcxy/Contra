@@ -39,7 +39,7 @@ Scene {
       // the player entity
       Player {
         id: player
-        x: 100; y: 100
+        x: 100; y: 250
         width: 32
         height: 63
       }
@@ -59,7 +59,7 @@ Scene {
 
       // set the camera's limits
       limitLeft: 0
-      limitRight: 700
+      limitRight: 1700
       limitTop: 0
       limitBottom: 400
     }

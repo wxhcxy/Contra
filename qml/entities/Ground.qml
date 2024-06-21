@@ -12,8 +12,8 @@ EntityBase {
     entityType: "ground1"
 
     // 没有直接修改图片的x和y值，引入了 row 和 column 以便更容易定位，Level.qml使用它们
-    x: row*gameScene.gridSize
-    y: level.height - (column+1)*gameScene.gridSize
+    //x: row*gameScene.gridSize
+    //y: level.height - (column+1)*gameScene.gridSize
     width: gameScene.gridSize * size
     height: 21          // 设置高度为图片高度以便更好的进行碰撞
 
