@@ -49,7 +49,7 @@ Item {
     Ground { x:-32 ; y:360; size: 1}
     //左侧墙壁阻止越界
 
-    EnemyZombie{
+    Zombie{
        x:360
        y:230
        width: 55
