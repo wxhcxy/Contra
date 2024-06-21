@@ -25,5 +25,10 @@ Item {
       column: -4
       size: 2
     }
-
+    Zombie{
+       x:220
+       y:130
+       width: 55
+       height: 25
+    }
 }
