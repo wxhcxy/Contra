@@ -9,6 +9,8 @@ EntityBase {
 
     MultiResolutionImage{
         id:_enemy
+        width: parent.width
+        height: parent.height
         source: Qt.resolvedUrl("")
     }
 

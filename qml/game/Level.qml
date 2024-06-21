@@ -28,25 +28,25 @@ Item {
     //顶部墙壁阻止越界
     Ground { x:0; y:-20; size: 50}
     //左侧墙壁阻止越界
-    Ground { x:-32; y:0; size: 1}
-    Ground { x:-32 ; y:20; size: 1}
-    Ground { x:-32 ; y:40; size: 1}
-    Ground { x:-32 ; y:60; size: 1}
-    Ground { x:-32 ; y:80; size: 1}
-    Ground { x:-32 ; y:100; size: 1}
-    Ground { x:-32 ; y:120; size: 1}
-    Ground { x:-32 ; y:140; size: 1}
-    Ground { x:-32 ; y:160; size: 1}
-    Ground { x:-32 ; y:180; size: 1}
-    Ground { x:-32 ; y:200; size: 1}
-    Ground { x:-32 ; y:220; size: 1}
-    Ground { x:-32 ; y:240; size: 1}
-    Ground { x:-32 ; y:260; size: 1}
-    Ground { x:-32 ; y:280; size: 1}
-    Ground { x:-32 ; y:300; size: 1}
-    Ground { x:-32 ; y:320; size: 1}
-    Ground { x:-32 ; y:340; size: 1}
-    Ground { x:-32 ; y:360; size: 1}
+    Ground { x:-34; y:0; size: 1}
+    Ground { x:-34 ; y:20; size: 1}
+    Ground { x:-34 ; y:40; size: 1}
+    Ground { x:-34 ; y:60; size: 1}
+    Ground { x:-34 ; y:80; size: 1}
+    Ground { x:-34 ; y:100; size: 1}
+    Ground { x:-34 ; y:120; size: 1}
+    Ground { x:-34 ; y:140; size: 1}
+    Ground { x:-34 ; y:160; size: 1}
+    Ground { x:-34 ; y:180; size: 1}
+    Ground { x:-34 ; y:200; size: 1}
+    Ground { x:-34 ; y:220; size: 1}
+    Ground { x:-34 ; y:240; size: 1}
+    Ground { x:-34 ; y:260; size: 1}
+    Ground { x:-34 ; y:280; size: 1}
+    Ground { x:-34 ; y:300; size: 1}
+    Ground { x:-34 ; y:320; size: 1}
+    Ground { x:-34 ; y:340; size: 1}
+    Ground { x:-34 ; y:360; size: 1}
     //左侧墙壁阻止越界
 
     Zombie{
@@ -58,51 +58,19 @@ Item {
 
     EnemyTank{
         id:tank
+        x:500
+        y:160
+        width: 40
+        height: 38
+    }
+
+    EnemyTank{
+        id:tank2
         x:400
         y:100
-        width: 30
-        height: 30
-
-        Timer{
-            id:tankRotation
-            interval: 2
-            running: true
-            repeat: true
-            onTriggered: {
-                tank.rotation = Math.atan2(player.y-tank.y,player.x-tank.x)*(180/Math.PI)
-                //这个定时器跟踪玩家的移动，然后旋转坦克射击方向，坦克会动态跟踪人物的移动位置射击
-                //console.log("x: "+Math.abs((player.x-tank.x)/2))
-                //console.log("y: "+Math.abs((player.y-tank.y)/2))
-                if(Math.abs(player.x-tank.x)>300)
-                {
-                    tankAttack.stop()
-                }
-                if(Math.abs(player.x-tank.x)<=300)
-                {
-                    tankAttack.start()
-                }
-            }
-        }
-        Timer{
-            id:tankAttack
-            interval: 1000
-            running: true
-            repeat: true
-            onTriggered: {
-                //这个定时器控制坦克发射子弹，每隔1秒朝玩家位置发射一颗炮弹
-                var directionX = player.x - tank.x
-                var directionY = player.y - tank.y
-                var distance = Math.sqrt(directionX * directionX + directionY * directionY)
-                var speed = 200
-                var velocityX = (directionX / distance) * speed
-                var velocityY = (directionY / distance) * speed
-
-                entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../entities/BulletEnemy.qml"), {
-                "shootPosition": Qt.point(tank.x, tank.y),
-                "velocity": Qt.point(velocityX, velocityY)
-                      });
-              }
-        }
-
+        width: 40
+        height: 38
     }
+
+
 }
