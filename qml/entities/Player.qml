@@ -6,6 +6,7 @@ EntityBase {
     entityId: "player"
     entityType: "player1"
     property alias controller: controller
+    property var direction: Qt.point(1, -1) // 初始面向方向为向右,向上
 
     MultiResolutionImage{
         id:_player

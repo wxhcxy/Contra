@@ -72,5 +72,11 @@ Item {
         height: 38
     }
 
+    EnemyBird {
+        x: 320
+        y: 300
+        id: birdEnemy1
+    }
+
 
 }
