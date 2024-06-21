@@ -9,7 +9,7 @@ Scene {
     // the "logical size" - the scene content is auto-scaled to match the GameWindow size
     width: 480
     height: 320
-    gridSize: 48
+    gridSize: 32
 
     EntityManager {
       id: entityManager
@@ -21,31 +21,21 @@ Scene {
         debugDrawVisible: false    // enable this for physics debugging
     }
 
+    Image {
+        anchors.fill: gameScene.gameWindowAnchorItem
+        source: "../../assets/img/background.png"
+    }
+
 
     Keys.forwardTo: player.controller
 
     Item {
       id: container
 
-      // 5 green rectangles to make the player's movement visible
-            Ground {
-              x: 0; y: 0
-              width: 2
-              height: 700
-              color: "green"
-            }
-            Ground {
-              x: 0; y: 268
-              width: 200
-              height: 32
-              color: "green"
-            }
-            Ground {
-              x: 230; y: 170
-              width: 100
-              height: 32
-              color: "pink"
-            }
+      Level {
+          id: level
+      }
+
       // the player entity
       Player {
         id: player
