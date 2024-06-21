@@ -4,6 +4,7 @@ import Felgo 4.0
 EntityBase {
     id:_enemyEntityBase
     property alias source: _enemy.source
+    entityId: "enemy"
 
     MultiResolutionImage{
         id:_enemy

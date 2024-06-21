@@ -3,7 +3,7 @@ import Felgo 4.0
 
 EntityBase {
     id:player
-    entityId: "role"
+    entityId: "player"
     entityType: "player1"
     property alias controller: controller
 

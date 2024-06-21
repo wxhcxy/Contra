@@ -59,12 +59,17 @@ EntityBase{
                                     var otherEntityId = collidedEntity.entityId;//获取碰撞实体的entityId
                                     var otherEntityParent = collidedEntity.parent;//获取碰撞实体的父对象
                                     //console.log(otherEntityId)
-
+                                    var otherEntityType = collidedEntity.entityType
                                     /*if(otherEntityId!=="ground"){   //如果子弹碰撞的对象不是地面场景，就销毁子弹
                                         //_bullet.destroy()            //因为子弹只有在撞击到玩家，敌人这些才有伤害效果
                                     }*/
-                                    if(otherEntityId==="player"){  //如果子弹击中坦克
-                                        console.log("子弹击中坦克")
+
+                                    if(otherEntityId==="ground"){  //如果子弹击中坦克
+                                        console.log("子弹击中"+otherEntityType)
+                                        _bullet.destroy()
+                                    }
+                                    if(otherEntityId==="enemy"){  //如果子弹击中坦克
+                                        console.log("子弹击中"+otherEntityType)
                                         _bullet.destroy()
                                     }
                                 }
