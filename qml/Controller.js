@@ -13,7 +13,10 @@ function entityBeginCrash(otherEntity,contactNormal) {
         enemyBeginCrash(this,collidedEntity,contactNormal)
     }
     if(this.entityId === "playerBullet"){//检测该实体是否为子弹
-        bulletBeginCrash(this,collidedEntity,contactNormal)
+        bulletPlayerBeginCrash(this,collidedEntity,contactNormal)
+    }
+    if(this.entityId === "enemyBullet"){//检测该实体是否为子弹
+        bulletEnemyBeginCrash(this,collidedEntity,contactNormal)    //敌人子弹打到玩家，敌人子弹会销毁
     }
 
 
@@ -79,15 +82,20 @@ function enemyBeginCrash(currentEntity,otherEntity,contactNormal){
 //子弹开始碰撞的处理
 //currentEntity为该实体
 //otherEntity为发生碰撞的实体
-function bulletBeginCrash(currentEntity,otherEntity,contactNormal){
+function bulletPlayerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){
-        console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
-
+        currentEntity.destroy()
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     if(otherEntity.entityId === "ground"){
-        console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
 
     }
 }
 
-
+function bulletEnemyBeginCrash(currentEntity,otherEntity,contactNormal){
+    if(otherEntity.entityId === "player"){
+        currentEntity.destroy()
+        return
+    }
+}
