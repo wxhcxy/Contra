@@ -37,7 +37,7 @@ EntityBase {
                                 if(input==="fire")
                                 {
 
-                                    entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../entities/Bullet.qml"), {
+                                    entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../entities/PlayerBullet.qml"), {
                                          //动态创建一个新的子弹实体，并为其设置初始属性
                                          "shootPosition" : Qt.point(player.x + player.width , player.y + player.height / 2 -10),
                                          "velocity" : Qt.point(300,0)

@@ -3,6 +3,7 @@ import Felgo
 
 Enemy{
     entityType: "zombie"
+    entityId: "zombie"
     id:_zombie
 
         source:Qt.resolvedUrl("../../assets/img/enemyWalk.png")
@@ -27,7 +28,7 @@ Enemy{
                                         console.log("Zombie attack player")
                                         source = Qt.resolvedUrl("../../assets/img/enemyAttack.png")
                                 }
-                                    if(otherEntityId==="bullet"){//检测zombie与bullet碰撞
+                                    if(otherEntityId==="playerBullet"){//检测zombie与bullet碰撞
                                         console.log("Zombie dead!")
                                         _zombie.destroy()
                                         bodyType = Body.Dynamic//将类型设置为动态(可以穿过)

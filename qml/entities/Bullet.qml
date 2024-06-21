@@ -6,6 +6,8 @@ EntityBase{
     entityId: "bullet"
     entityType: "bullet"
 
+    property alias boxCollider: _boxCollider
+
     x:shootPosition.x
     y:shootPosition.y
 
@@ -17,8 +19,8 @@ EntityBase{
 
     Rectangle{
         id:bulletImg
-        width: 12
-        height: 12
+        width: _bullet.width
+        height:_bullet.height
         radius: 6
     }
 
@@ -47,32 +49,10 @@ EntityBase{
     }
 
     BoxCollider{
-        id:boxCollider
+        id:_boxCollider
         width: bullet.width
         height: bullet.height
-        //anchors.fill: parent
         collisionTestingOnlyMode: true
-
-        fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
-                                    //console.log("Bullet BeginContact")
-                                    var collidedEntity = other.getBody().target;//获取碰撞的实体other
-                                    var otherEntityId = collidedEntity.entityId;//获取碰撞实体的entityId
-                                    var otherEntityParent = collidedEntity.parent;//获取碰撞实体的父对象
-                                    //console.log(otherEntityId)
-                                    var otherEntityType = collidedEntity.entityType
-                                    /*if(otherEntityId!=="ground"){   //如果子弹碰撞的对象不是地面场景，就销毁子弹
-                                        //_bullet.destroy()            //因为子弹只有在撞击到玩家，敌人这些才有伤害效果
-                                    }*/
-
-                                    if(otherEntityId==="ground"){  //如果子弹击中坦克
-                                        console.log("子弹击中"+otherEntityType)
-                                        _bullet.destroy()
-                                    }
-                                    if(otherEntityId==="enemy"){  //如果子弹击中坦克
-                                        console.log("子弹击中"+otherEntityType)
-                                        _bullet.destroy()
-                                    }
-                                }
     }
 
 
@@ -80,7 +60,6 @@ EntityBase{
         target: _bullet
         property: "x"
         velocity: _bullet.velocity.x
-        //minVelocity: 50
         running: true
     }
 
@@ -95,13 +74,13 @@ EntityBase{
         }
     }
 
-    /*Timer{
+    Timer{  //子弹发射1.8秒后，就销毁子弹实体
         running: true
-        interval: 20
+        interval: 1800
         onTriggered: {
-            console.log(mo.velocity)
+            _bullet.destroy()
         }
-    }*/
+    }
 }
 
 
