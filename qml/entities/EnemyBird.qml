@@ -5,7 +5,6 @@ import "../Controller.js" as Ctrler
 Enemy {
     id: birdEnemy
     entityType: "bird"
-    entityId: "bird"
     width: 30
     height: 20
 
@@ -83,6 +82,7 @@ Item {
         implicitWidth: parent.height
 
         fixture.onBeginContact: (other, contactNormal)=>{
+                                    Ctrler.entityBeginCrash(other,contactNormal)
                                     var collidedEntity = other.getBody().target;
                                     var otherEntityId = collidedEntity.entityId;
                                     var otherEntityParent = collidedEntity.parent;

@@ -9,17 +9,17 @@ function entityBeginCrash(otherEntity,contactNormal) {
     if(this.entityId === "player"){ //检测该实体是否为玩家
         playerBeginCrash(this,collidedEntity,contactNormal)
     }
+    //console.log("this.entityId: "+this.entityId)
     if(this.entityId === "enemy"){ //检测该实体是否为敌人
         enemyBeginCrash(this,collidedEntity,contactNormal)
     }
-    if(this.entityId === "playerBullet"){//检测该实体是否为子弹
+    if(this.entityType === "playerBullet"){//检测该实体是否为子弹
+        enemyBeginCrash(this,collidedEntity,contactNormal)
         bulletPlayerBeginCrash(this,collidedEntity,contactNormal)
     }
-    if(this.entityId === "enemyBullet"){//检测该实体是否为子弹
+    if(this.entityType === "enemyBullet"){//检测该实体是否为子弹
         bulletEnemyBeginCrash(this,collidedEntity,contactNormal)    //敌人子弹打到玩家，敌人子弹会销毁
     }
-
-
 }
 
 
@@ -28,10 +28,10 @@ function entityBeginCrash(otherEntity,contactNormal) {
 //otherEntity为发生碰撞的实体
 function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){//检测该otherEntity是否为enemy
-        console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
-        console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
         currentEntity.state = "Walk"
     }
 
@@ -87,7 +87,8 @@ function playerActions(status){
        entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
             //动态创建一个新的子弹实体，并为其设置初始属性
             "shootPosition" : Qt.point(player.x + player.width , player.y + player.height / 2 -10),
-            "velocity" : Qt.point(300,0)
+            "velocity" : Qt.point(300,0),
+            "attackPower" : 40  //子弹的攻击力
             //子弹的速度方向是用这个坐标计算的,
             //如（30,0）x方向为30,y方向为0,那么子弹就向x方向运动，
             //如果（30,30），那么子弹就向右下角运动，矢量和
@@ -104,14 +105,30 @@ function playerActions(status){
 //currentEntity为该实体
 //otherEntity为发生碰撞的实体
 function enemyBeginCrash(currentEntity,otherEntity,contactNormal){
+    //console.log("otherEntity.entityType:"+otherEntity.entityType)
     if(otherEntity.entityId === "player"){
-        console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
-    if(otherEntity.entityId === "playerBullet"){
-        console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
-        console.log(currentEntity.entityType+" hp--")
+    if(otherEntity.entityType === "playerBullet"){
+        //console.log("playerBullet")
+        bloodCalculate(currentEntity,otherEntity,contactNormal)
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+        //console.log(currentEntity.entityType+" hp--")
     }
 }
+
+//子弹碰撞到敌人时，计算伤害，生命值
+function bloodCalculate(currentEntity,otherEntity,contactNormal){
+    //console.log(currentEntity.entityId)
+    //console.log(otherEntity.attackPower) //子弹的攻击力
+    //console.log("this.blood: "+currentEntity.blood) //生命值
+    currentEntity.blood -= otherEntity.attackPower //生命值计算，生命值减去当前子弹的攻击力
+    if(currentEntity.blood<=0)
+    {
+        currentEntity.destroy() //生命值小于等于0,就销毁它
+    }
+}
+
 
 //子弹开始碰撞的处理
 //currentEntity为该实体

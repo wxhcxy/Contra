@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Felgo 4.0
-
+import "../Controller.js" as Ctrler
 
 Enemy{
     id:_tank
@@ -17,7 +17,12 @@ Enemy{
         source: "../../assets/img/tankGun1.png"
     }
 
+    boxCollider.fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
+                                            Ctrler.entityBeginCrash(other,contactNormal)
+                                         }
+
     //rotation: 0
+
     Timer{
         id:tankRotation
         interval: 2

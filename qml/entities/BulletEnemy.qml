@@ -5,7 +5,6 @@ import "../Controller.js" as Ctrler
 Bullet{
     id:_enemyBullet
 
-    entityId: "enemyBullet"
     entityType: "enemyBullet"
     width: 12
     height: 12

@@ -5,6 +5,7 @@ EntityBase {
     id:_enemyEntityBase
     property alias source: _enemy.source
     property alias boxCollider: _boxCollider
+    property int blood: 100 //敌人血量
     entityId: "enemy"
 
     MultiResolutionImage{
