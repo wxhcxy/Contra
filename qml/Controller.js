@@ -6,7 +6,12 @@ function entityBeginCrash(otherEntity,contactNormal) {
     var otherEntityId = collidedEntity.entityId;//获取碰撞实体的entityId
     var otherEntityParent = collidedEntity.parent;//获取碰撞实体的父对象
     var otherEntityType = collidedEntity.entityType
+    if(this.entityType === "playerBullet"&&otherEntity.entityType==="player1"){//检测该实体是否为子弹
+        console.log("34514")
+        return
+    }
     if(this.entityId === "player"){ //检测该实体是否为玩家
+        console.log("1111111111111")
         playerBeginCrash(this,collidedEntity,contactNormal)
     }
     //console.log("this.entityId: "+this.entityId)
@@ -14,7 +19,6 @@ function entityBeginCrash(otherEntity,contactNormal) {
         enemyBeginCrash(this,collidedEntity,contactNormal)
     }
     if(this.entityType === "playerBullet"){//检测该实体是否为子弹
-        enemyBeginCrash(this,collidedEntity,contactNormal)
         bulletPlayerBeginCrash(this,collidedEntity,contactNormal)
     }
     if(this.entityType === "enemyBullet"){//检测该实体是否为子弹
@@ -114,6 +118,16 @@ function playerActions(status){
             //如（30,0）x方向为30,y方向为0,那么子弹就向x方向运动，
             //如果（30,30），那么子弹就向右下角运动，矢量和
         });
+       entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
+            "shootPosition" : Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20),
+            "velocity" : Qt.point(290,-30),
+            "attackPower" : 40
+        });
+       entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
+            "shootPosition" : Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20),
+            "velocity" : Qt.point(290,30),
+            "attackPower" : 40
+        });
 
    }
    if(status === "Jump"){
@@ -134,7 +148,7 @@ function enemyBeginCrash(currentEntity,otherEntity,contactNormal){
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     if(otherEntity.entityType === "playerBullet"){
-        //console.log("playerBullet")
+        console.log("playerBullet")
         bloodCalculate(currentEntity,otherEntity,contactNormal)
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
         //console.log(currentEntity.entityType+" hp--")

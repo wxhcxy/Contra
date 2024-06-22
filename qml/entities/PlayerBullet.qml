@@ -6,8 +6,8 @@ Bullet{
     id:_playerBullet
 
     entityType: "playerBullet"
-    width: 12
-    height: 12
+    //width: 70
+    //height: 70
     rotation: 0
 
     boxCollider.fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果

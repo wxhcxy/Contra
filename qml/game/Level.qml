@@ -11,17 +11,18 @@ Item {
     //底部地面
     Ground { x:0; y:370; size: 200}
 
+    //跳跃距离应该为100
     /*悬空道路*/
     Ground { x:0; y:280; size: 5}
     Ground { x:180; y:180; size: 4}
-    Ground { x:350; y:250; size: 3}
+    Ground { x:350; y:240; size: 3}
     Ground { x:480; y:180; size: 3}
     Ground { x:630; y:220; size: 3}
-    Ground { x:830; y:270; size: 3}
-    Ground { x:930; y:210; size: 3}
+    Ground { x:830; y:280; size: 3}
+    Ground { x:960; y:210; size: 3}
     Ground { x:1130; y:240; size: 3}
-    Ground { x:1250; y:180; size: 5}
-    Ground { x:1430; y:260; size: 3}
+    Ground { x:1280; y:180; size: 5}
+    Ground { x:1480; y:270; size: 3}
     /*悬空道路*/
 
 
@@ -49,40 +50,76 @@ Item {
     Ground { x:-34 ; y:360; size: 1}
     //左侧墙壁阻止越界
 
-    Zombie{
+    EnemyZombie{
        x:360
-       y:230
+       y:220
        width: 55
        height: 25
     }
+    /*
+    EnemyZombie{
+       x:400
+       y:350
+       width: 55
+       height: 25
+    }
+
+    EnemyZombie{
+       x:880
+       y:350
+       width: 55
+       height: 25
+    }
+    */
 
     EnemyTank{
         id:tank
         x:500
         y:160
-        width: 40
-        height: 38
     }
 
     EnemyTank{
         id:tank2
-        x:400
-        y:100
-        width: 40
-        height: 38
+        x:840
+        y:260
     }
+    /*
+    EnemyTank{
+        id:tank3
+        x:1100
+        y:350
+    }
+    */
+    EnemyTank{
+        id:tank4
+        x:1400
+        y:-8
+    }
+    /*
+    EnemyTank{
+        id:tank5
+        x:1600
+        y:350
+    }
+    */
 
     EnemyBird {
-        x: 320
-        y: 300
+        x: 340
+        y: 100
         id: birdEnemy1
     }
 
     EnemyBird {
-        x: 320
-        y: 100
+        x: 480
+        y: 60
         id: birdEnemy2
     }
+    EnemyBird {
+        x: 1500
+        y: 200
+        id: birdEnemy3
+    }
+
 
 
 }

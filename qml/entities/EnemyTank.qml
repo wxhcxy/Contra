@@ -7,6 +7,9 @@ Enemy{
 
     entityType: "enemyTank"
     source: Qt.resolvedUrl("../../assets/img/tank1.png")
+    width: 38
+    height: 34
+
 
     Image {
         id:_tankGun
@@ -33,11 +36,11 @@ Enemy{
             //这个定时器跟踪玩家的移动，然后旋转坦克射击方向，坦克会动态跟踪人物的移动位置射击
             //console.log("x: "+Math.abs((player.x-tank.x)/2))
             //console.log("y: "+Math.abs((player.y-tank.y)/2))
-            if(Math.abs(player.x-_tank.x)>330)
+            if((Math.abs(player.x-_tank.x)>300)||(Math.abs(player.y-_tank.y)>200))
             {
                 tankAttack.stop()
             }
-            if(Math.abs(player.x-_tank.x)<=330)
+            if((Math.abs(player.x-_tank.x)<=300)||(Math.abs(player.y-_tank.y)<=200))
             {
                 tankAttack.start()
             }

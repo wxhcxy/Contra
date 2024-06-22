@@ -46,7 +46,7 @@ Scene {
       // the player entity
       Player {
         id: player
-        x: 100; y: 250
+        x: 100; y: 255
         width: 32
         height: 63
       }

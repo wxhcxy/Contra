@@ -8,6 +8,7 @@ EntityBase {
     property int blood: 100 //敌人血量
     entityId: "enemy"
 
+
     MultiResolutionImage{
         id:_enemy
         width: parent.width

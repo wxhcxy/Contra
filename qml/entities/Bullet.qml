@@ -17,21 +17,16 @@ EntityBase{
     property int bulletType: 0  //子弹样式，就是不同的子弹图片，得到一些奖励机制后，可能会升级子弹
     property int attackPower   //子弹攻击力
 
-    Rectangle{
-        id:bulletImg
-        width: _bullet.width
-        height:_bullet.height
-        radius: 6
-    }
-
-    /*
     Image {
         id:bulletImg
-        width: 14
-        height: 14
-        rotation: 90
-        //anchors.centerIn: parent
+        width: 70
+        height: 70
+        //rotation: 90
+        //anchors.fill: parent
+        anchors.centerIn: parent
         source: {
+            return "../../assets/img/tankBullet1.png"
+            /*
                     if(bulletType===0)
                     {
                         return "../../assets/img/bullet0.png"
@@ -40,12 +35,13 @@ EntityBase{
                     {
                         return "../../assets/img/bullet1.png"
                     }
+                    */
         }
 
     }
-    */
+
     onEntityDestroyed: {
-        console.log("子弹被销毁")
+        //console.log("子弹被销毁")
     }
 
     BoxCollider{
