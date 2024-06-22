@@ -50,10 +50,8 @@ EntityBase {
           "down":Qt.Key_S,
           "left":Qt.Key_A,
           "right":Qt.Key_D,
-          "fire":Qt.Key_J,
-
+          "fire":Qt.Key_J
       }
-
 
       // this controller helps to move the player
       onInputActionPressed: (input)=>{

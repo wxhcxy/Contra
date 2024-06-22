@@ -78,5 +78,11 @@ Item {
         id: birdEnemy1
     }
 
+    EnemyBird {
+        x: 320
+        y: 100
+        id: birdEnemy2
+    }
+
 
 }

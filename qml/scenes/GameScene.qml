@@ -11,6 +11,8 @@ Scene {
     height: 320
     gridSize: 32
 
+    property int offsetBeforeScrollingStarts: 240
+
     EntityManager {
       id: entityManager
       entityContainer: container
@@ -21,11 +23,15 @@ Scene {
         debugDrawVisible: false    // enable this for physics debugging
     }
 
-    Image {
-        anchors.fill: gameScene.gameWindowAnchorItem
-        source: "../../assets/img/background.png"
+    ParallaxScrollingBackground {
+        sourceImage: Qt.resolvedUrl( "../../assets/img/bg3.png")
+        anchors.bottom: gameScene.gameWindowAnchorItem.bottom
+        // player.x 大于 offsetBeforeScrollingStarts（滚动开始的阈值），ParallaxScrollingBackground将
+        // 以 -player.horizontalVelocity（与player水平速度相反的速度）移动，且垂直速度为 0。否则，ParallaxScrollingBackground 将保持静止（速度为 0,0）
+        movementVelocity: player.x > offsetBeforeScrollingStarts ? Qt.point(-player.horizontalVelocity,0) : Qt.point(0,0)
+        // 视差滚动的效果比率,水平方向的比率是 0.3 ParallaxScrollingBackground将在水平方向上以player速度的 30% 滚动。垂直方向的比率为 0，垂直方向上没有视差效果
+        ratio: Qt.point(0.3,0)
     }
-
 
     Keys.forwardTo: player.controller
 

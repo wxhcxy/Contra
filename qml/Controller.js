@@ -37,8 +37,9 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
 
 }
 
-//
 function playerInputPressed(input){
+
+
         if(input==="fire")
         {
             this.state = "Fire"
@@ -46,6 +47,39 @@ function playerInputPressed(input){
             playerActions(this.state)
         }
 
+        // 通过判断按下的按键来确定移动的方向
+        if(input === "up"){
+            player.direction = Qt.point(0,-1)
+            console.log("Player up!")
+        }
+        if(input === "down"){
+            player.direction = Qt.point(0,1)
+            console.log("Player down!")
+        }
+        if(input === "left"){
+            player.direction = Qt.point(-1,0)
+            console.log("Player left!")
+        }
+        if(input === "right"){
+            player.direction = Qt.point(1,0)
+            console.log("Player right!")
+        }
+        if(input === "right" && "down"){
+            player.direction = Qt.point(1,1)
+            console.log("Player right and down!")
+        }
+        if(input === "right" && "up"){
+            player.direction = Qt.point(1,-1)
+            console.log("Player right and up!")
+        }
+        if(input === "left" && "up"){
+            player.direction = Qt.point(-1,-1)
+            console.log("Player left and up!")
+        }
+        if(input === "left" && "down"){
+            player.direction = Qt.point(-1,1)
+            console.log("Player left and down!")
+        }
 }
 
 function playerActions(status){
@@ -102,9 +136,9 @@ function bulletEnemyBeginCrash(currentEntity,otherEntity,contactNormal){
 
 // 添加了player的moveback功能
 function moveBack(distance) {
-        // 假设player有一个名为"direction"的属性来表示面向方向
-        // 或者你可以使用某种逻辑来计算后退的方向
-        var backDirection = Qt.point(-player.direction.x, -player.direction.y); // 获取后退方向
+    // 假设player有一个名为"direction"的属性来表示面向方向
+    // 或者你可以使用某种逻辑来计算后退的方向
+    var backDirection = Qt.point(-player.direction.x, -player.direction.y); // 获取后退方向
 
     // 计算新的位置（直接基于方向移动）
     var newPosX = player.x + backDirection.x * distance;

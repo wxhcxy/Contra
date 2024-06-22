@@ -7,7 +7,7 @@ Enemy {
     entityType: "bird"
     entityId: "bird"
     width: 30
-    height: 60
+    height: 20
 
 Item {
     id:_birdItem
