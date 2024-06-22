@@ -32,11 +32,12 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     }
     if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
-        currentEntity.state = "Walk"
+        currentEntity.state = "Idle"
     }
 
 }
 
+//通过检测玩家按下键，改变状态，并做出反应
 function playerInputPressed(input){
 
 
@@ -46,6 +47,10 @@ function playerInputPressed(input){
             console.log("Player fire!")
             playerActions(this.state)
         }
+        if(input === "jump"){
+            this.state ="Jump"
+            playerActions(this.state)
+        }
 
         // 通过判断按下的按键来确定移动的方向
         if(input === "up"){
@@ -53,15 +58,21 @@ function playerInputPressed(input){
             console.log("Player up!")
         }
         if(input === "down"){
+
             player.direction = Qt.point(0,1)
             console.log("Player down!")
+
         }
         if(input === "left"){
+            this.state = "Left"
             player.direction = Qt.point(-1,0)
+            playerActions(this.state)
             console.log("Player left!")
         }
         if(input === "right"){
+            this.state = "Right"
             player.direction = Qt.point(1,0)
+            playerActions(this.state)
             console.log("Player right!")
         }
         if(input === "right" && "down"){
@@ -82,11 +93,21 @@ function playerInputPressed(input){
         }
 }
 
+//通过检测玩家释放键，改变状态，并做出反应
+function playerInputReleased(input){
+
+        this.state = "Idle"
+
+}
+
+
+
+
 function playerActions(status){
    if(status === "Fire"){
        entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
             //动态创建一个新的子弹实体，并为其设置初始属性
-            "shootPosition" : Qt.point(player.x + player.width , player.y + player.height / 2 -10),
+            "shootPosition" : Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20),
             "velocity" : Qt.point(300,0),
             "attackPower" : 40  //子弹的攻击力
             //子弹的速度方向是用这个坐标计算的,
@@ -94,6 +115,9 @@ function playerActions(status){
             //如果（30,30），那么子弹就向右下角运动，矢量和
         });
 
+   }
+   if(status === "Jump"){
+       collider.linearVelocity.y = -1200
    }
 
 }

@@ -21,6 +21,7 @@ Scene {
     PhysicsWorld {
         id: physicsWorld
         debugDrawVisible: false    // enable this for physics debugging
+        gravity.y:98.1
     }
 
     ParallaxScrollingBackground {
