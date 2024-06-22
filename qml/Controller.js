@@ -191,13 +191,16 @@ function bulletEnemyBeginCrash(currentEntity,otherEntity,contactNormal){
 
 // 添加了player的moveback功能
 function moveBack(distance) {
-    // 假设player有一个名为"direction"的属性来表示面向方向
-    // 或者你可以使用某种逻辑来计算后退的方向
+    // player有一个"direction"的属性来表示面向方向
     var backDirection = Qt.point(-player.direction.x, -player.direction.y); // 获取后退方向
 
     // 计算新的位置（直接基于方向移动）
     var newPosX = player.x + backDirection.x * distance;
     var newPosY = player.y + backDirection.y * distance;
+
+    // player图片大小为63*61
+    if(player.x < 0){ player.x = 0; newPosX = player.x}
+    if(player.y > 370){ player.y = 370 - 63; newPosY = player.y}
 
     // 设置新的位置
     player.x = newPosX;

@@ -5,6 +5,8 @@ import "../Controller.js" as Ctrler
 Enemy {
     id: birdEnemy
     entityType: "bird"
+    property double originX: x
+    property double originY: y
     width: 30
     height: 20
 
@@ -72,44 +74,64 @@ Item {
             paused: false
         } */
 
+        Timer {
+             id: trackTimer
+             interval: 200
+             repeat: true
+             onTriggered: {
+                 // 计算玩家与鸟之间的距离
+                 var dx1 = Math.abs(birdEnemy.x - player.x )
+                 var dy1 = Math.abs(birdEnemy.y - player.y )
+                 var d1 = Math.sqrt(dx1*dx1 + dy1*dy1)
+                 //console.log(d)
+                 if(d1 < 180){
+                     // the size of player is 63*61
+                     if(player.x < 0){ player.x = 0; trackTimer.stop(); waitTimer.start()}
+                     if((player.y + 63) > 370){ player.y = 307; trackTimer.stop(); waitTimer.start()}
+
+                     // player在鸟的左上角
+                     if(birdEnemy.x > player.x && birdEnemy.y > player.y)
+                     { birdEnemy.x -= 5; birdEnemy.y -= 5 }
+
+                     // player在鸟的左下角
+                     if(birdEnemy.x > player.x && birdEnemy.y < player.y)
+                     { birdEnemy.x -= 5; birdEnemy.y += 5 }
+
+                     // player在鸟的右上角
+                     if(birdEnemy.x < player.x && birdEnemy.y > player.y)
+                     { birdEnemy.x += 5; birdEnemy.y -= 5 }
+
+                     // player在鸟的右下角
+                     if(birdEnemy.x < player.x && birdEnemy.y < player.y)
+                     { birdEnemy.x += 5; birdEnemy.y += 5 }
+
+                     // 计算玩家与鸟之间的距离
+                     var dx2 = Math.abs(birdEnemy.x - player.x )
+                     var dy2 = Math.abs(birdEnemy.y - player.y)
+                     var d2 = Math.sqrt(dx2*dx2 + dy2*dy2)
+                     if(d2 < 30){
+                         Ctrler.playerBeginCrash(player, birdEnemy)
+                     }
+                     // 如果到达目标位置，停止定时器
+                     //if (Math.abs(birdEnemy.x - player.x) < 50 && Math.abs(birdEnemy.y - player.y) < 50)
+                     //{ trackTimer.stop(); waitTimer.start() }
+             }
+         }
+
+     }
+
+        Timer {
+            id: waitTimer
+            interval: 3000
+            repeat: true
+            onTriggered: trackTimer.restart()
+        }
+
+    Component.onCompleted:{ trackTimer.start() }
+
     }
 
 
-    BoxCollider {
-        id:_birdCollider
-        bodyType: Body.Static
-        implicitHeight: parent.width
-        implicitWidth: parent.height
-
-        fixture.onBeginContact: (other, contactNormal)=>{
-                                    Ctrler.entityBeginCrash(other,contactNormal)
-                                    var collidedEntity = other.getBody().target;
-                                    var otherEntityId = collidedEntity.entityId;
-                                    var otherEntityParent = collidedEntity.parent;
-
-                                    if(otherEntityId==="player"){       //检测bird与player碰撞
-                                        console.log("bird attack player")
-                                        Ctrler.moveBack(20)      // 暂时还没完善被攻击后退的功能
-                                }
-                                    if(otherEntityId==="playerBullet"){    //检测bird与bullet碰撞
-                                        console.log("bird dead!")
-                                        birdEnemy.destroy()
-                                        bodyType = Body.Dynamic   //将类型设置为动态(可以穿过)
-                                    }
-
-    }
-
-        fixture.onEndContact: (other, contactNormal)=>{
-                                  var collidedEntity = other.getBody().target;
-                                  var otherEntityId = collidedEntity.entityId;
-                                  var otherEntityParent = collidedEntity.parent;
-
-                                  if(otherEntityId==="player"){//检测bird与player碰撞
-
-                              }
-
-
-   }
-    }
+    boxCollider.fixture.onBeginContact: (other, contactNormal)=>{ Ctrler.entityBeginCrash(other, contactNormal) }
 }
 
