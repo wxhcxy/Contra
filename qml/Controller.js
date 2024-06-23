@@ -43,8 +43,6 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
 
 //通过检测玩家按下键，改变状态，并做出反应
 function playerInputPressed(input){
-
-
         if(input==="fire")
         {
             this.state = "Fire"

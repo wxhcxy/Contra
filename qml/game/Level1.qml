@@ -6,8 +6,6 @@ import "../common"
 Item {
     id: level
 
-    width: 10 * gameScene.gridSize
-
     //底部地面
     Ground { x:0; y:370; size: 200}
 

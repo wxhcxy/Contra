@@ -4,14 +4,19 @@ import "../game"
 import "../common"
 import "../entities"
 
-Scene {
+SceneBase {
     id: gameScene
     // the "logical size" - the scene content is auto-scaled to match the GameWindow size
     width: 480
     height: 320
     gridSize: 32
 
+    property string activeLevelFileName
     property int offsetBeforeScrollingStarts: 240
+
+    function setLevel(fileName) {
+        activeLevelFileName = fileName
+    }
 
     EntityManager {
       id: entityManager
@@ -39,14 +44,20 @@ Scene {
     Item {
       id: container
 
-      Level {
-          id: level
+      // 运行时加载关卡
+      Loader {
+          id: loader
+          source: activeLevelFileName ? "../game/" + activeLevelFileName : ""
       }
+
+      //Level1 {
+      //    id: level
+      //}
 
       // the player entity
       Player {
         id: player
-        x: 100; y: 255
+        x: 100; y:255
         width: 32
         height: 63
       }
@@ -70,8 +81,5 @@ Scene {
       limitTop: 0
       limitBottom: 400
     }
-
-
-
 
 }
