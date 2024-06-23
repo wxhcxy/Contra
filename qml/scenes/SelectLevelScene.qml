@@ -5,6 +5,7 @@ import QtQuick.Controls
 SceneBase {
     id: selectLevelScene
     anchors.fill: parent
+    property int backgroundIndex
 
     signal levelPressed(string selectedLevel)
 
@@ -12,7 +13,7 @@ SceneBase {
         z: -2
         anchors.centerIn: parent
         anchors.fill: parent
-        source: Qt.resolvedUrl("../../assets/img/bg4.png")
+        source: Qt.resolvedUrl("../../assets/img/background/bg4.png")
     }
 
     Button {
@@ -65,9 +66,11 @@ SceneBase {
                   anchors.centerIn: parent
                   onClicked: {
                     var levelFile = "Level"+level+".qml";
-                    if(level < 2)
-                      levelFile = "Level"+level+".qml";
-                    levelPressed(levelFile)
+                    selectLevelScene.backgroundIndex = level;
+                    gameScene.background = selectLevelScene.backgroundIndex;
+                    //console.log(gameScene.background)
+                    levelFile = "Level"+level+".qml";
+                    levelPressed(levelFile);
                   }
                 }
               }

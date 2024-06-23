@@ -16,7 +16,7 @@ SceneBase {
         z: -2
         anchors.centerIn: parent
         anchors.fill: parent
-        source: Qt.resolvedUrl("../../assets/img/bg4.png")
+        source: Qt.resolvedUrl("../../assets/img/background/bg4.png")
     }
 
     Button {

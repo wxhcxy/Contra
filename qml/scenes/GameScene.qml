@@ -11,8 +11,8 @@ SceneBase {
     height: 320
     gridSize: 32
 
+    property int background: 0
     property string activeLevelFileName
-    property int offsetBeforeScrollingStarts: 240
 
     function setLevel(fileName) {
         activeLevelFileName = fileName
@@ -27,16 +27,11 @@ SceneBase {
         id: physicsWorld
         debugDrawVisible: false    // enable this for physics debugging
         gravity.y:98.1
-    }
+    } 
 
-    ParallaxScrollingBackground {
-        sourceImage: Qt.resolvedUrl( "../../assets/img/bg3.png")
-        anchors.bottom: gameScene.gameWindowAnchorItem.bottom
-        // player.x 大于 offsetBeforeScrollingStarts（滚动开始的阈值），ParallaxScrollingBackground将
-        // 以 -player.horizontalVelocity（与player水平速度相反的速度）移动，且垂直速度为 0。否则，ParallaxScrollingBackground 将保持静止（速度为 0,0）
-        movementVelocity: player.x > offsetBeforeScrollingStarts ? Qt.point(-player.horizontalVelocity,0) : Qt.point(0,0)
-        // 视差滚动的效果比率,水平方向的比率是 0.3 ParallaxScrollingBackground将在水平方向上以player速度的 30% 滚动。垂直方向的比率为 0，垂直方向上没有视差效果
-        ratio: Qt.point(0.3,0)
+    // 运行时加载关卡的背景图片
+    Loader{
+        source: background ? "Background.qml" : ""
     }
 
     Keys.forwardTo: player.controller
@@ -48,11 +43,11 @@ SceneBase {
       Loader {
           id: loader
           source: activeLevelFileName ? "../game/" + activeLevelFileName : ""
-      }
+          onLoaded: {
 
-      //Level1 {
-      //    id: level
-      //}
+              //console.log(bg.sourceImage)
+          }
+      }
 
       // the player entity
       Player {
