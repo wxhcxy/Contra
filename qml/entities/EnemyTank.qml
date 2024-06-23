@@ -17,14 +17,13 @@ Enemy{
         y:10
         width: 36
         height: 16
-        source: "../../assets/img/tankGun1.png"
+        source: Qt.resolvedUrl("../../assets/img/tankGun1.png")
     }
 
     boxCollider.fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
                                             Ctrler.entityBeginCrash(other,contactNormal)
                                          }
 
-    //rotation: 0
 
     Timer{
         id:tankRotation
@@ -34,8 +33,6 @@ Enemy{
         onTriggered: {
             _tankGun.rotation = Math.atan2(player.y-_tank.y,player.x-_tank.x)*(180/Math.PI)
             //这个定时器跟踪玩家的移动，然后旋转坦克射击方向，坦克会动态跟踪人物的移动位置射击
-            //console.log("x: "+Math.abs((player.x-tank.x)/2))
-            //console.log("y: "+Math.abs((player.y-tank.y)/2))
             if((Math.abs(player.x-_tank.x)>300)||(Math.abs(player.y-_tank.y)>200))
             {
                 tankAttack.stop()
@@ -59,11 +56,10 @@ Enemy{
             var speed = 200
             var velocityX = (directionX / distance) * speed
             var velocityY = (directionY / distance) * speed
+            var bulletUrl = Qt.resolvedUrl("../entities/BulletEnemy.qml")
+            var shootPosition = Qt.point(_tank.x+_tank.width/2, _tank.y+_tank.height/2)
 
-            entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../entities/BulletEnemy.qml"), {
-            "shootPosition": Qt.point(_tank.x+_tank.width/2, _tank.y+_tank.height/2),
-            "velocity": Qt.point(velocityX, velocityY)
-                  });
+            Ctrler.shootBullet(bulletUrl, shootPosition, Qt.point(velocityX, velocityY), 30)
           }
     }
 }

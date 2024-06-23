@@ -15,7 +15,7 @@ EntityBase{
     property point shootPosition    //子弹的发射位置
     property point velocity  //子弹的速度矢量
     property int bulletType: 0  //子弹样式，就是不同的子弹图片，得到一些奖励机制后，可能会升级子弹
-    property int attackPower   //子弹攻击力
+    property int attackPower: 30   //子弹攻击力
 
     Image {
         id:bulletImg

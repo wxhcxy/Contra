@@ -34,6 +34,10 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){//检测该otherEntity是否为enemy
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
+    if(otherEntity.entityType === "enemyBullet"){//检测该otherEntity是否为enemy
+        bloodCalculate(currentEntity,otherEntity,contactNormal) //敌人子弹打中玩家，计算玩家血量
+        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+    }
     if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
         currentEntity.state = "Idle"
@@ -105,27 +109,41 @@ function playerInputReleased(input){
 
 
 
+function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
+    entityManager.createEntityFromUrlWithProperties(bulletUrl, {
+         //动态创建一个新的子弹实体，并为其设置初始属性
+         "shootPosition" : shootPosition,
+         "velocity" : velocity,
+         "attackPower" : attackPower  //子弹的攻击力
+         //子弹的速度方向是用这个坐标计算的,
+         //如（30,0）x方向为30,y方向为0,那么子弹就向x方向运动，
+         //如果（30,30），那么子弹就向右下角运动，矢量和
+     });
+}
+
 function playerActions(status){
    if(status === "Fire"){
-       entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
-            //动态创建一个新的子弹实体，并为其设置初始属性
-            "shootPosition" : Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20),
-            "velocity" : Qt.point(300,0),
-            "attackPower" : 40  //子弹的攻击力
-            //子弹的速度方向是用这个坐标计算的,
-            //如（30,0）x方向为30,y方向为0,那么子弹就向x方向运动，
-            //如果（30,30），那么子弹就向右下角运动，矢量和
-        });
-       entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
-            "shootPosition" : Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20),
-            "velocity" : Qt.point(290,-30),
-            "attackPower" : 40
-        });
-       entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("./entities/PlayerBullet.qml"), {
-            "shootPosition" : Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20),
-            "velocity" : Qt.point(290,30),
-            "attackPower" : 40
-        });
+       var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
+       var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20)
+       var bullets = [
+                   {velocity: Qt.point(300,0),attackPower: 30},
+                   {velocity: Qt.point(290,-30),attackPower: 30},
+                   {velocity: Qt.point(290,30),attackPower: 30}
+               ];
+       if(player.attackMode===0) //一颗普通子弹
+       {
+           shootBullet(bulletUrl, shootPosition, Qt.point(300,0), 30)
+       }
+       else if(player.attackMode===1) //一颗强化子弹
+       {
+           shootBullet(bulletUrl, shootPosition, Qt.point(300,0), 50)
+       }
+       else if(player.attackMode===2) //三颗强化子弹
+       {
+           for(var i = 0; i < bullets.length; ++i){
+               shootBullet(bulletUrl, shootPosition, bullets[i].velocity, bullets[i].attackPower)
+           }
+       }
 
    }
    if(status === "Jump"){
@@ -159,7 +177,8 @@ function bloodCalculate(currentEntity,otherEntity,contactNormal){
     //console.log(otherEntity.attackPower) //子弹的攻击力
     //console.log("this.blood: "+currentEntity.blood) //生命值
     currentEntity.blood -= otherEntity.attackPower //生命值计算，生命值减去当前子弹的攻击力
-    if(currentEntity.blood<=0)
+    console.log(currentEntity.entityId+"  blood: "+currentEntity.blood)
+    if(currentEntity.blood<=0&&currentEntity.entityId!=="player")
     {
         currentEntity.destroy() //生命值小于等于0,就销毁它
     }
