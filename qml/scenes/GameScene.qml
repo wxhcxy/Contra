@@ -72,9 +72,9 @@ SceneBase {
 
       // set the camera's limits
       limitLeft: 0
-      limitRight: 2200
+
       limitTop: 0
-      limitBottom: 400
+      limitBottom: 1024
     }
 
 }

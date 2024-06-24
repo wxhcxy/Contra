@@ -4,7 +4,8 @@ import Felgo
 EntityBase {
     id:_ground
     // 可设置不同类型的地面资源
-    property url source: "../../assets/img/ground.png"
+    property url source: "../../assets/img/Barriers/"+path+".png"
+    property string path
     property int column: 0
     property int row: 0
     property int size
@@ -15,13 +16,13 @@ EntityBase {
     //x: row*gameScene.gridSize
     //y: level.height - (column+1)*gameScene.gridSize
     width: gameScene.gridSize * size
-    height: 21          // 设置高度为图片高度以便更好的进行碰撞
+    height: 32          // 设置高度为图片高度以便更好的进行碰撞
 
     Row {
         Repeater {
             model: size
             delegate: Image {
-                source: _ground.source
+                source: "../../assets/img/Barriers/"+path+".png"
             }
         }
     }

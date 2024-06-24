@@ -5,113 +5,66 @@ import "../common"
 
 Item {
     id: level
+    //地图大小1024*2048
+    //上边界
+    Ground{x:0;y:0;size:64;path:"ground2"}
 
-    //底部地面
-    Ground { x:0; y:370; size: 200}
+    //下边界
+    Ground{x:0;y:1024;size:64;path:"ground2"}
 
-    //跳跃距离应该为100
-    /*悬空道路*/
+    //左边界
+    Ground{x:0;y:0;size:32;path:"ground2";rotation: 90}
 
-    Ground { x:1130; y:240; size: 3}
-    Ground { x:1280; y:180; size: 5}
-    Ground { x:1480; y:270; size: 3}
-    /*悬空道路*/
+    //右边界
+    Ground{x:2080;y:0;size:32;path:"ground2";rotation: 90}
 
+    Ground{x:0;y:1024;size:1;path:"stone"}
+    Ground{x:0;y:0;size:1;path:"stone"}
+    Ground{x:2048;y:1024;size:1;path:"stone"}
+    Ground{x:2048;y:0;size:1;path:"stone"}
+    //玩家起点
 
-    //顶部墙壁阻止越界
-    Ground { x:0; y:-20; size: 50}
-    //左侧墙壁阻止越界
-    Ground { x:-34; y:0; size: 1}
-    Ground { x:-34 ; y:20; size: 1}
-    Ground { x:-34 ; y:40; size: 1}
-    Ground { x:-34 ; y:60; size: 1}
-    Ground { x:-34 ; y:80; size: 1}
-    Ground { x:-34 ; y:100; size: 1}
-    Ground { x:-34 ; y:120; size: 1}
-    Ground { x:-34 ; y:140; size: 1}
-    Ground { x:-34 ; y:160; size: 1}
-    Ground { x:-34 ; y:180; size: 1}
-    Ground { x:-34 ; y:200; size: 1}
-    Ground { x:-34 ; y:220; size: 1}
-    Ground { x:-34 ; y:240; size: 1}
-    Ground { x:-34 ; y:260; size: 1}
-    Ground { x:-34 ; y:280; size: 1}
-    Ground { x:-34 ; y:300; size: 1}
-    Ground { x:-34 ; y:320; size: 1}
-    Ground { x:-34 ; y:340; size: 1}
-    Ground { x:-34 ; y:360; size: 1}
-    //左侧墙壁阻止越界
+    //上层
+    //左
+    Ground{x:64;y:192;size:3;path:"stone"}
+    Ground{x:224;y:160;size:1;path:"stone"}
+    Ground{x:320;y:192;size:1;path:"stone"}
+    Ground{x:416;y:160;size:1;path:"stone"}
+    Ground{x:512;y:192;size:1;path:"stone"}
 
-    EnemyZombie{
-       x:360
-       y:220
-       width: 55
-       height: 25
-    }
-    /*
-    EnemyZombie{
-       x:400
-       y:350
-       width: 55
-       height: 25
-    }
+    //中间层
+    //左
+    Ground{x:0;y:512;size:15;path:"ground1"}
+    Ground{x:480;y:512;size:1;path:"corner1"}
+    Ground{x:512;y:544;size:3;path:"ground1";rotation: 90}
+    Ground{x:512;y:640;size:1;path:"corner1";rotation: 90}
+    Ground{x:480;y:672;size:2;path:"ground1";rotation: 180}
+    Ground{x:416;y:672;size:1;path:"corner1";rotation: 180}
+    Ground{x:384;y:640;size:1;path:"ground1";rotation: -90}
+    Ground{x:416;y:608;size:1;path:"corner2";rotation: -180}
+    Ground{x:0;y:544;size:15;path:"solid"}
+    Ground{x:416;y:576;size:2;path:"solid"}
+    Ground{x:416;y:608;size:2;path:"solid"}
+    Ground{x:384;y:608;size:13;path:"ground1";rotation: 180}
+    //中
+    //Ground{x:640;y:544;size:1;path:"corner1";rotation: -90}
+    //Ground{x:672;y:512;size:8;path:"ground1"}
+    //Ground{x:928;y:512;size:1;path:"corner1"}
 
-    EnemyZombie{
-       x:880
-       y:350
-       width: 55
-       height: 25
-    }
-    */
-
-    EnemyTank{
-        id:tank
-        x:500
-        y:160
-    }
-
-    EnemyTank{
-        id:tank2
-        x:840
-        y:260
-    }
-    /*
-    EnemyTank{
-        id:tank3
-        x:1100
-        y:350
-    }
-    */
-    EnemyTank{
-        id:tank4
-        x:1400
-        y:-8
-    }
-    /*
-    EnemyTank{
-        id:tank5
-        x:1600
-        y:350
-    }
-    */
-
-    EnemyBird {
-        x: 340
-        y: 100
-        id: birdEnemy1
-    }
-
-    EnemyBird {
-        x: 480
-        y: 60
-        id: birdEnemy2
-    }
-    EnemyBird {
-        x: 1500
-        y: 200
-        id: birdEnemy3
-    }
-
-
+    //底层
+    //左
+    Ground{x:0;y:768;size:15;path:"ground1"}
+    Ground{x:0;y:800;size:15;path:"solid"}
+    Ground{x:0;y:832;size:15;path:"solid"}
+    Ground{x:0;y:864;size:15;path:"solid"}
+    Ground{x:0;y:896;size:15;path:"solid"}
+    Ground{x:0;y:928;size:15;path:"solid"}
+    Ground{x:0;y:960;size:64;path:"solid"}
+    Ground{x:0;y:992;size:64;path:"solid"}
+    Ground{x:480;y:768;size:1;path:"corner1"}
+    Ground{x:512;y:800;size:4;path:"ground1";rotation: 90}
+    Ground{x:480;y:928;size:1;path:"corner2"}
+    Ground{x:512;y:928;size:3;path:"ground1"}
+    Ground{x:602;y:928;size:5;path:"ground1";rotation: -45}
 
 }
