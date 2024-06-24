@@ -8,7 +8,7 @@ Item {
     //地图大小2048*1024
     //上边界
     Ground{x:0;y:0;size:64;path:"ground2"}
-    Npc{x:200;y:255}
+
 
 
     //左边界
@@ -56,6 +56,7 @@ Item {
 
     //中间层
     //左
+    Npc{x:50;y:768-npc.height}
     Ground{x:0;y:512;size:15;path:"ground11"}
     Ground{x:480;y:512;size:1;path:"corner11"}
     Ground{x:512;y:544;size:3;path:"ground11";rotation: 90}

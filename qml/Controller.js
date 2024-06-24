@@ -10,17 +10,17 @@ function entityBeginCrash(otherEntity,contactNormal) {
         console.log("34514")
         return
     }
-    if(this.entityId === "player"){ //检测该实体是否为玩家
+    else if(this.entityId === "player"){ //检测该实体是否为玩家
         playerBeginCrash(this,collidedEntity,contactNormal)
     }
     //console.log("this.entityId: "+this.entityId)
-    if(this.entityId === "enemy"){ //检测该实体是否为敌人
+    else if(this.entityId === "enemy"){ //检测该实体是否为敌人
         enemyBeginCrash(this,collidedEntity,contactNormal)
     }
-    if(this.entityType === "playerBullet"){//检测该实体是否为子弹
+    else if(this.entityType === "playerBullet"){//检测该实体是否为子弹
         bulletPlayerBeginCrash(this,collidedEntity,contactNormal)
     }
-    if(this.entityType === "enemyBullet"){//检测该实体是否为子弹
+    else if(this.entityType === "enemyBullet"){//检测该实体是否为子弹
         bulletEnemyBeginCrash(this,collidedEntity,contactNormal)    //敌人子弹打到玩家，敌人子弹会销毁
     }
 }
@@ -33,11 +33,11 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){//检测该otherEntity是否为enemy
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
-    if(otherEntity.entityType === "enemyBullet"){//检测该otherEntity是否为enemy
+    else if(otherEntity.entityType === "enemyBullet"){//检测该otherEntity是否为enemy
         bloodCalculate(currentEntity,otherEntity,contactNormal) //敌人子弹打中玩家，计算玩家血量
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
-    if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
+    else if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
         currentEntity.state = "Idle"
     }
@@ -52,47 +52,47 @@ function playerInputPressed(input){
             console.log("Player fire!")
             playerActions(this.state)
         }
-        if(input === "jump"){
+        else if(input === "jump"){
             this.state ="Jump"
             playerActions(this.state)
         }
 
         // 通过判断按下的按键来确定移动的方向
-        if(input === "up"){
+        else if(input === "up"){
             player.direction = Qt.point(0,-1)
             console.log("Player up!")
         }
-        if(input === "down"){
+        else if(input === "down"){
 
             player.direction = Qt.point(0,1)
             console.log("Player down!")
 
         }
-        if(input === "left"){
+        else if(input === "left"){
             this.state = "Left"
             player.direction = Qt.point(-1,0)
             playerActions(this.state)
             console.log("Player left!")
         }
-        if(input === "right"){
+        else if(input === "right"){
             this.state = "Right"
             player.direction = Qt.point(1,0)
             playerActions(this.state)
             console.log("Player right!")
         }
-        if(input === "right" && "down"){
+        else if(input === "right" && "down"){
             player.direction = Qt.point(1,1)
             console.log("Player right and down!")
         }
-        if(input === "right" && "up"){
+        else if(input === "right" && "up"){
             player.direction = Qt.point(1,-1)
             console.log("Player right and up!")
         }
-        if(input === "left" && "up"){
+        else if(input === "left" && "up"){
             player.direction = Qt.point(-1,-1)
             console.log("Player left and up!")
         }
-        if(input === "left" && "down"){
+        else if(input === "left" && "down"){
             player.direction = Qt.point(-1,1)
             console.log("Player left and down!")
         }
@@ -162,7 +162,7 @@ function enemyBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "player"){
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
-    if(otherEntity.entityType === "playerBullet"){
+    else if(otherEntity.entityType === "playerBullet"){
         console.log("playerBullet")
         bloodCalculate(currentEntity,otherEntity,contactNormal)
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
@@ -192,7 +192,7 @@ function bulletPlayerBeginCrash(currentEntity,otherEntity,contactNormal){
         currentEntity.destroy()
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
-    if(otherEntity.entityId === "ground"){
+    else if(otherEntity.entityId === "ground"){
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
 
     }
