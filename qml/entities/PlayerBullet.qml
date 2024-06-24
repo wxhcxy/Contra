@@ -14,4 +14,21 @@ Bullet{
                                             Ctrler.entityBeginCrash(other,contactNormal)
                                          }
 
+    GameSoundEffect{
+
+    }
+
+    /*
+    BackgroundMusic{
+        id:playerShootMusic
+        source: Qt.resolvedUrl("../../assets/audio/playerShoot.wav")
+        loops: 1
+        autoPlay: false
+        volume: 0.2
+    }
+
+    onEntityCreated: {
+        playerShootMusic.play()
+    }
+    */
 }

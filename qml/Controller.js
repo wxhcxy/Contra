@@ -11,7 +11,6 @@ function entityBeginCrash(otherEntity,contactNormal) {
         return
     }
     if(this.entityId === "player"){ //检测该实体是否为玩家
-        console.log("1111111111111")
         playerBeginCrash(this,collidedEntity,contactNormal)
     }
     //console.log("this.entityId: "+this.entityId)

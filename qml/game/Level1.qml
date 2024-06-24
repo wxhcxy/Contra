@@ -6,6 +6,9 @@ import "../common"
 Item {
     id: level
 
+    width: 10 * gameScene.gridSize
+
+
     //底部地面
     Ground { x:0; y:370; size: 200}
 
@@ -27,97 +30,27 @@ Item {
     //顶部墙壁阻止越界
     Ground { x:0; y:-20; size: 50}
     //左侧墙壁阻止越界
-    Ground { x:-34; y:0; size: 1}
-    Ground { x:-34 ; y:20; size: 1}
-    Ground { x:-34 ; y:40; size: 1}
-    Ground { x:-34 ; y:60; size: 1}
-    Ground { x:-34 ; y:80; size: 1}
-    Ground { x:-34 ; y:100; size: 1}
-    Ground { x:-34 ; y:120; size: 1}
-    Ground { x:-34 ; y:140; size: 1}
-    Ground { x:-34 ; y:160; size: 1}
-    Ground { x:-34 ; y:180; size: 1}
-    Ground { x:-34 ; y:200; size: 1}
-    Ground { x:-34 ; y:220; size: 1}
-    Ground { x:-34 ; y:240; size: 1}
-    Ground { x:-34 ; y:260; size: 1}
-    Ground { x:-34 ; y:280; size: 1}
-    Ground { x:-34 ; y:300; size: 1}
-    Ground { x:-34 ; y:320; size: 1}
-    Ground { x:-34 ; y:340; size: 1}
-    Ground { x:-34 ; y:360; size: 1}
-    //左侧墙壁阻止越界
+    Ground { x:0; y:0; size: 19; rotation: 90}
 
-    EnemyZombie{
-       x:360
-       y:220
-       width: 55
-       height: 25
-    }
-    /*
-    EnemyZombie{
-       x:400
-       y:350
-       width: 55
-       height: 25
-    }
 
-    EnemyZombie{
-       x:880
-       y:350
-       width: 55
-       height: 25
-    }
-    */
+    EnemyZombie{x:360; y:220; width: 55; height: 25}
+    EnemyZombie{x:660; y:350; width: 55; height: 25}
+    EnemyZombie{x:850; y:350; width: 55; height: 25}
+    EnemyZombie{x:1160; y:220; width: 55; height: 25}
 
-    EnemyTank{
-        id:tank
-        x:500
-        y:160
-    }
+    EnemyTank{x:500; y:160}
+    EnemyTank{x:500; y:350}
+    EnemyTank{x:850; y:260}
+    EnemyTank{x:1060; y:350}
+    EnemyTank{x:1260; y:-8}
+    EnemyTank{x:1400; y:350}
 
-    EnemyTank{
-        id:tank2
-        x:840
-        y:260
-    }
-    /*
-    EnemyTank{
-        id:tank3
-        x:1100
-        y:350
-    }
-    */
-    EnemyTank{
-        id:tank4
-        x:1400
-        y:-8
-    }
-    /*
-    EnemyTank{
-        id:tank5
-        x:1600
-        y:350
-    }
-    */
+    EnemyBird {x: 340; y: 100}
+    EnemyBird {x: 1500; y: 200}
+    EnemyBird {x: 1100; y: 70}
 
-    EnemyBird {
-        x: 340
-        y: 100
-        id: birdEnemy1
-    }
 
-    EnemyBird {
-        x: 480
-        y: 60
-        id: birdEnemy2
-    }
-    EnemyBird {
-        x: 1500
-        y: 200
-        id: birdEnemy3
-    }
-
+    EnemyBoss1{x:2100; y:250; width: 100; height: 100}
 
 
 }

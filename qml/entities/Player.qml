@@ -29,7 +29,7 @@ EntityBase {
         id:_collider
         anchors.fill: parent
         force: Qt.point(player.controller.xAxis * 2000, -player.controller.yAxis * 2000)
-        linearDamping: 15   //调节这个值，可以改变人物移动的速度，值越小，移动速度越快
+        linearDamping: 10   //调节这个值，可以改变人物移动的速度，值越小，移动速度越快
         fixture.onBeginContact:(other,contactNormal)=>{
                         Ctrler.entityBeginCrash(other,contactNormal)
                 }
