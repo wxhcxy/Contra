@@ -48,6 +48,8 @@ SceneBase {
               if(activeLevelFileName==="Level1.qml"){
                   camera.limitRight = 2200
                   camera.limitBottom = 400
+                  player.x = 100
+                  player.y = 240
               }
               //console.log(bg.sourceImage)
           }

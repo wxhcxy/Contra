@@ -2,6 +2,7 @@ import Felgo
 import QtQuick
 
 ParallaxScrollingBackground {
+    id:bg
     sourceImage: Qt.resolvedUrl( "../../assets/img/background/bg" + gameScene.background + ".png")
     anchors.bottom: parent.bottom
     // player.x 大于 240（滚动开始的阈值），ParallaxScrollingBackground将

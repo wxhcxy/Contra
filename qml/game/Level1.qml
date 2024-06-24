@@ -14,8 +14,8 @@ Item {
 
     //跳跃距离应该为100
     /*悬空道路*/
-    Ground { x:0; y:280; size: 5;path:"stone"}
-    Ground { x:180; y:180; size: 4;path:"stone"}
+    Ground { x:0; y:270; size: 5;path:"stone"}
+    Ground { x:180; y:160; size: 4;path:"stone"}
     Ground { x:350; y:240; size: 3;path:"stone"}
     Ground { x:480; y:180; size: 3;path:"stone"}
     Ground { x:630; y:220; size: 3;path:"stone"}
@@ -50,6 +50,29 @@ Item {
 
 
     EnemyBoss1{x:2100; y:250; width: 100; height: 100}
+
+
+    BackgroundMusic{
+        id:tankExplosion
+        source: Qt.resolvedUrl("../../assets/audio/tankExp.wav")
+        loops: 1
+        autoPlay: false
+        volume: 0.4
+    }
+
+    GameAnimatedSprite{
+        id:squaby
+        running: false
+        visible: false
+        width: 90
+        height: 90
+        loops: 1
+        frameWidth: 66
+        frameHeight: 66
+        frameCount: 11
+        frameRate: 24
+        source: Qt.resolvedUrl("../../assets/img/tank/tankExp.png")
+    }
 
 
 }

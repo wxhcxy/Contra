@@ -18,17 +18,17 @@ Bullet{
 
     }
 
-    /*
+
     BackgroundMusic{
         id:playerShootMusic
         source: Qt.resolvedUrl("../../assets/audio/playerShoot.wav")
         loops: 1
         autoPlay: false
-        volume: 0.2
+        volume: 0.16
     }
 
     onEntityCreated: {
         playerShootMusic.play()
     }
-    */
+
 }

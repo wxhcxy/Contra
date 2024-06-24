@@ -24,6 +24,15 @@ Enemy{
                                             Ctrler.entityBeginCrash(other,contactNormal)
                                          }
 
+    onEntityDestroyed: {
+        squaby.x = _tank.x - _tank.width/2
+        squaby.y = _tank.y - _tank.height/2
+        squaby.z = 2
+        squaby.running = true
+        squaby.visible = true
+        tankExplosion.play()
+    }
+
 
     Timer{
         id:tankRotation
