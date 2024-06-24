@@ -8,7 +8,7 @@ Item {
     //地图大小2048*1024
     //上边界
     Ground{x:0;y:0;size:64;path:"ground2"}
-
+    Npc{x:200;y:255}
 
 
     //左边界
