@@ -23,4 +23,12 @@ EntityBase {
         anchors.fill:parent
         bodyType: Body.Static
     }
+
+    Connections{
+        target: gameScene
+        function onGameOver(){
+            _enemyEntityBase.destroy()
+        }
+    }
+
 }

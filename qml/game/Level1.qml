@@ -10,27 +10,26 @@ Item {
 
 
     //底部地面
-    Ground { x:0; y:370; size: 200}
+    Ground { x:0; y:370; size: 200;path:"stone"}
 
     //跳跃距离应该为100
     /*悬空道路*/
-    Ground { x:0; y:280; size: 5}
-    Ground { x:180; y:180; size: 4}
-    Ground { x:350; y:240; size: 3}
-    Ground { x:480; y:180; size: 3}
-    Ground { x:630; y:220; size: 3}
-    Ground { x:830; y:280; size: 3}
-    Ground { x:960; y:210; size: 3}
-    Ground { x:1130; y:240; size: 3}
-    Ground { x:1280; y:180; size: 5}
-    Ground { x:1480; y:270; size: 3}
+    Ground { x:0; y:280; size: 5;path:"stone"}
+    Ground { x:180; y:180; size: 4;path:"stone"}
+    Ground { x:350; y:240; size: 3;path:"stone"}
+    Ground { x:480; y:180; size: 3;path:"stone"}
+    Ground { x:630; y:220; size: 3;path:"stone"}
+    Ground { x:830; y:280; size: 3;path:"stone"}
+    Ground { x:960; y:210; size: 3;path:"stone"}
+    Ground { x:1130; y:240; size: 3;path:"stone"}
+    Ground { x:1280; y:180; size: 5;path:"stone"}
+    Ground { x:1480; y:270; size: 3;path:"stone"}
     /*悬空道路*/
 
-
     //顶部墙壁阻止越界
-    Ground { x:0; y:-20; size: 50}
+    Ground { x:0; y:-20; size: 50;path:"stone"}
     //左侧墙壁阻止越界
-    Ground { x:0; y:0; size: 19; rotation: 90}
+    Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
 
 
     EnemyZombie{x:360; y:220; width: 55; height: 25}

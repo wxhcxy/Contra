@@ -11,6 +11,7 @@ SceneBase {
     height: 320
     gridSize: 32
 
+    signal gameOver()
     property int background: 0
     property string activeLevelFileName
 
@@ -44,7 +45,10 @@ SceneBase {
           id: loader
           source: activeLevelFileName ? "../game/" + activeLevelFileName : ""
           onLoaded: {
-
+              if(activeLevelFileName==="Level1.qml"){
+                  camera.limitRight = 2200
+                  camera.limitBottom = 400
+              }
               //console.log(bg.sourceImage)
           }
       }
@@ -69,6 +73,7 @@ SceneBase {
 
       // the camera follows the player
       focusedObject: player
+
 
       // set the camera's limits
       limitLeft: 0

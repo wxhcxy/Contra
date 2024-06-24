@@ -22,19 +22,26 @@ Enemy{
                                             Ctrler.entityBeginCrash(other,contactNormal)
                                          }
 
+    onEntityDestroyed: {
+        gameOver()
+    }
+
+
     Timer{
         id:tankRotation
         interval: 2
         running: true
         repeat: true
         onTriggered: {
-            if((Math.abs(player.x-_boss1.x)>300)||(Math.abs(player.y-_boss1.y)>300))
+            if((Math.abs(player.x-_boss1.x)>310)||(Math.abs(player.y-_boss1.y)>310))
             {
                 tankAttack.stop()
+                zombieCreate.stop()
             }
-            if((Math.abs(player.x-_boss1.x)<=300)||(Math.abs(player.y-_boss1.y)<=300))
+            if((Math.abs(player.x-_boss1.x)<=310)||(Math.abs(player.y-_boss1.y)<=310))
             {
                 tankAttack.start()
+                zombieCreate.start()
             }
         }
     }
@@ -83,6 +90,22 @@ Enemy{
                 }
                 num=0
             }
+        }
+    }
+
+    Timer{
+        id:zombieCreate
+        interval: 3000
+        running: false
+        repeat: true
+        onTriggered: {
+            entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl( "../entities/EnemyZombie.qml"), {
+                 "x":2200,
+                 "y":350,
+                 "width":55,
+                 "height":25,
+                 "bossCreateZombie":true
+             });
         }
     }
 

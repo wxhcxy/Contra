@@ -77,6 +77,7 @@ Item {
         Timer {
              id: trackTimer
              interval: 200
+             running: true
              repeat: true
              onTriggered: {
                  // 计算玩家与鸟之间的距离
@@ -126,8 +127,6 @@ Item {
             repeat: true
             onTriggered: trackTimer.restart()
         }
-
-    Component.onCompleted:{ trackTimer.start() }
 
     }
 
