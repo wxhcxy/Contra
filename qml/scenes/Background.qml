@@ -9,4 +9,14 @@ ParallaxScrollingBackground {
     movementVelocity: player.x > 240 ? Qt.point(-player.horizontalVelocity,0) : Qt.point(0,0)
     // 视差滚动的效果比率,水平方向的比率是 0.3 ParallaxScrollingBackground将在水平方向上以player速度的 30% 滚动。垂直方向的比率为 0，垂直方向上没有视差效果
     ratio: Qt.point(0.3,0)
+
+    Component.onCompleted: {
+        if(bg.width > bg.height){
+            movementVelocity = player.x > 240 ? Qt.point(-player.horizontalVelocity,0) : Qt.point(0,0)
+            bg.ratio = Qt.point(0.3,0)
+        } else {
+            movementVelocity = player.y > 160 ? Qt.point(0,-player.verticalVelocity) : Qt.point(0,0)
+            ratio = Qt.point(0,0.3)
+        }
+    }
 }

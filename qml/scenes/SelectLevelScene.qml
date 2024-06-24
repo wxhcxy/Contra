@@ -33,27 +33,27 @@ SceneBase {
 
     Grid {
         anchors.centerIn: parent
-        spacing: 2
-        columns: 2
+        spacing: 8
+        columns: 5
 
         Repeater {
-          model: 2
+          model: 3
           delegate: Rectangle {
-            width: 52
-            height: 52
+            width: 66
+            height: 66
             radius: 12
             color: "white"
 
             Rectangle {
-              width: 44
-              height: 44
+              width: 58
+              height: 58
               anchors.centerIn: parent
               radius: 11
               color: "#54A4BF"
 
               Rectangle {
-                width: 40
-                height: 40
+                width: 54
+                height: 54
                 anchors.centerIn: parent
                 radius: 10
                 color: "white"
@@ -61,8 +61,10 @@ SceneBase {
                 Button {
                   property int level: index + 1 // index holds values from 0 to 1 (we set our repeater model to 2)
                   text: level
-                  width: 36
-                  height: 36
+                  font.pixelSize: 46
+                  font.family: fontLoader.name
+                  width: 50
+                  height: 50
                   anchors.centerIn: parent
                   onClicked: {
                     var levelFile = "Level"+level+".qml";

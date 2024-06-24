@@ -12,10 +12,21 @@ GameWindow {
       entityContainer: gameScene
   }
 
+  FontLoader {
+      id: fontLoader
+      source: Qt.resolvedUrl("fonts/contra.ttf")
+  }
+
  MenuScene {
       id: menuScene
       onSelectLevelPressed: gameWindow.state = "selectLevel"
+      onSettingsPressed: gameWindow.state = "Settings"
   }
+
+ SettingScene {
+     id: settingScene
+     onBackButtonPressed: gameWindow.state = "menu"
+ }
 
   SelectLevelScene {
       id: selectLevelScene
@@ -46,6 +57,11 @@ GameWindow {
           name: "selectLevel"
           PropertyChanges {target: selectLevelScene; opacity: 1 }
           PropertyChanges { target: gameWindow; activeScene:selectLevelScene }
+      },
+    State {
+          name: "Settings"
+          PropertyChanges { target: settingScene; opacity: 1}
+          PropertyChanges { target: gameWindow; activeScene: settingScene}
       },
     State {
           name: "game"

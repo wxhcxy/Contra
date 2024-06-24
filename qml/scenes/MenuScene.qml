@@ -23,15 +23,32 @@ SceneBase {
         id: menuButton1
         width: 150
         height:80
-        anchors.centerIn: parent
-        anchors.bottomMargin: 50
+        x: parent.width/2 - width/2
+        y: parent.height/2 - height
         text: qsTr("Play")
-        font.pointSize: 26
+        font.pixelSize: 46
+        font.family: fontLoader.name
         background: Rectangle {
             color: "transparent"
         }
 
         onClicked: selectLevelPressed()
+    }
+
+    Button {
+        id: menuButton2
+        width: 200
+        height:80
+        x: parent.width/2 - width/2
+        y: parent.height/2 + height/4
+        text: qsTr("Settings")
+        font.family: fontLoader.name
+        font.pixelSize: 46
+        background: Rectangle {
+            color: "transparent"
+        }
+
+        onClicked: settingsPressed()
     }
 
 }
