@@ -1,5 +1,6 @@
 import QtQuick
 import Felgo
+import "../Controller.js" as Ctrler
 
 EntityBase {
     id:_ground
@@ -8,7 +9,7 @@ EntityBase {
     property string path
     property int column: 0
     property int row: 0
-    property int size
+    property int size: 1
     entityId: "ground"
     entityType: "ground1"
 
@@ -33,5 +34,8 @@ EntityBase {
         height: _ground.height
         anchors.fill:parent
         bodyType: Body.Static
+        fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
+                                                Ctrler.entityBeginCrash(other,contactNormal)
+                                             }
     }
 }

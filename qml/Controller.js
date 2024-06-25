@@ -6,6 +6,9 @@ function entityBeginCrash(otherEntity,contactNormal) {
     var otherEntityId = collidedEntity.entityId;//获取碰撞实体的entityId
     var otherEntityParent = collidedEntity.parent;//获取碰撞实体的父对象
     var otherEntityType = collidedEntity.entityType
+    if(otherEntity.width===640){ //玩家子弹跑到窗口右侧边界时销毁，防止打到后面未出现的敌人
+        this.destroy()
+    }
     if(this.entityType === "playerBullet"&&otherEntity.entityType==="player1"){//检测该实体是否为子弹
         console.log("34514")
         return
