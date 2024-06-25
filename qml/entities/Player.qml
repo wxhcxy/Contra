@@ -10,8 +10,15 @@ EntityBase {
     property alias collider : _collider
     property var direction: Qt.point(1, -1) // 初始面向方向为向右,向上
     property int blood: 1000
-    property int attackMode: 2 //玩家武器攻击模式，如发射多颗子弹
+    property int attackMode: 0 //玩家武器攻击模式，如发射多颗子弹
     property int money : 700
+
+    //玩家子弹射击方向判断
+    property bool shootUp: false
+    property bool shootDown: false
+    property bool shootLeft: false
+    property bool shootRight: true
+
     AnimatedSprite {
         id:_player
 

@@ -62,22 +62,27 @@ function playerInputPressed(input){
 
         // 通过判断按下的按键来确定移动的方向
         else if(input === "up"){
+            player.shootUp = true
             player.direction = Qt.point(0,-1)
             console.log("Player up!")
         }
         else if(input === "down"){
-
+            player.shootDown = true
             player.direction = Qt.point(0,1)
             console.log("Player down!")
 
         }
         else if(input === "left"){
+            player.shootRight = false
+            player.shootLeft = true
             this.state = "Left"
             player.direction = Qt.point(-1,0)
             playerActions(this.state)
             console.log("Player left!")
         }
         else if(input === "right"){
+            player.shootLeft = false
+            player.shootRight = true
             this.state = "Right"
             player.direction = Qt.point(1,0)
             playerActions(this.state)
@@ -105,6 +110,12 @@ function playerInputPressed(input){
 function playerInputReleased(input){
 
         this.state = "Idle"
+        if(input === "up"){
+            player.shootUp = false
+        }
+        else if(input === "down"){
+            player.shootDown = false
+        }
 
 }
 
@@ -125,6 +136,7 @@ function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
 
 function playerActions(status){
    if(status === "Fire"){
+       var shootDirection = Qt.point(300,0)
        var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
        var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20)
        var bullets = [
@@ -132,13 +144,19 @@ function playerActions(status){
                    {velocity: Qt.point(290,-30),attackPower: 30},
                    {velocity: Qt.point(290,30),attackPower: 30}
                ];
+       if(player.shootRight){shootDirection = Qt.point(300,0)}
+       if(player.shootLeft){shootDirection = Qt.point(-300,0)}
+       if(player.shootRight&&player.shootUp){shootDirection = Qt.point(300,-300)}
+       if(player.shootRight&&player.shootDown){shootDirection = Qt.point(300,300)}
+       if(player.shootLeft&&player.shootUp){shootDirection = Qt.point(-300,-300)}
+       if(player.shootLeft&&player.shootDown){shootDirection = Qt.point(-300,300)}
        if(player.attackMode===0) //一颗普通子弹
        {
-           shootBullet(bulletUrl, shootPosition, Qt.point(300,0), 30)
+           shootBullet(bulletUrl, shootPosition, shootDirection, 30)
        }
        else if(player.attackMode===1) //一颗强化子弹
        {
-           shootBullet(bulletUrl, shootPosition, Qt.point(300,0), 50)
+           shootBullet(bulletUrl, shootPosition, shootDirection, 50)
        }
        else if(player.attackMode===2) //三颗强化子弹
        {
