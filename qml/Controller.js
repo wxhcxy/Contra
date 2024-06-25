@@ -26,6 +26,13 @@ function entityBeginCrash(otherEntity,contactNormal) {
     else if(this.entityType === "enemyBullet"){//检测该实体是否为子弹
         bulletEnemyBeginCrash(this,collidedEntity,contactNormal)    //敌人子弹打到玩家，敌人子弹会销毁
     }
+    if(otherEntityId==="reward"&&this.entityId==="player") //只有玩家碰到宝箱，宝箱才会销毁
+    {
+        if(collidedEntity.treasureMode===1) player.attackMode=1 //捡到第一种宝箱，更换玩家攻击模式
+        if(collidedEntity.treasureMode===2) player.attackMode=2 //捡到第二种宝箱，更换玩家攻击模式
+        collidedEntity.destroy() //销毁宝箱
+        return
+    }
 }
 
 

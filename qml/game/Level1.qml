@@ -55,6 +55,10 @@ Item {
 
     EnemyBoss1{x:2100; y:250; width: 100; height: 100}
 
+    Reward{x:280; y:350; width: 30; height: 30; treasureMode: 1}
+    Reward{x:400; y:350; width: 30; height: 30; treasureMode: 2;
+    source:Qt.resolvedUrl("../../assets/img/reward/multibullet.png")}
+
 
     BackgroundMusic{
         id:tankExplosion
