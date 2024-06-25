@@ -136,20 +136,23 @@ function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
 
 function playerActions(status){
    if(status === "Fire"){
-       var shootDirection = Qt.point(300,0)
        var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
        var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20)
+       var bulletsX = 300
+       var bulletsY = 0
+
+       if(player.shootRight){bulletsX=300; bulletsY=0}
+       if(player.shootLeft){bulletsX=-300; bulletsY=0}
+       if(player.shootRight&&player.shootUp){ bulletsX=300; bulletsY=-300}
+       if(player.shootRight&&player.shootDown){ bulletsX=300; bulletsY=300}
+       if(player.shootLeft&&player.shootUp){bulletsX=-300; bulletsY=-300}
+       if(player.shootLeft&&player.shootDown){bulletsX=-300; bulletsY=300}
+       var shootDirection = Qt.point(bulletsX,bulletsY)
        var bullets = [
-                   {velocity: Qt.point(300,0),attackPower: 30},
-                   {velocity: Qt.point(290,-30),attackPower: 30},
-                   {velocity: Qt.point(290,30),attackPower: 30}
+                   {velocity: Qt.point(bulletsX,bulletsY),attackPower: 30},
+                   {velocity: Qt.point(bulletsX-10,bulletsY-40),attackPower: 30},
+                   {velocity: Qt.point(bulletsX-10,bulletsY+40),attackPower: 30}
                ];
-       if(player.shootRight){shootDirection = Qt.point(300,0)}
-       if(player.shootLeft){shootDirection = Qt.point(-300,0)}
-       if(player.shootRight&&player.shootUp){shootDirection = Qt.point(300,-300)}
-       if(player.shootRight&&player.shootDown){shootDirection = Qt.point(300,300)}
-       if(player.shootLeft&&player.shootUp){shootDirection = Qt.point(-300,-300)}
-       if(player.shootLeft&&player.shootDown){shootDirection = Qt.point(-300,300)}
        if(player.attackMode===0) //一颗普通子弹
        {
            shootBullet(bulletUrl, shootPosition, shootDirection, 30)
