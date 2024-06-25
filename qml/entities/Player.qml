@@ -20,16 +20,65 @@ EntityBase {
     property bool shootDown: false
     property bool shootLeft: false
     property bool shootRight: true
+    //判断玩家当前方向
+    property bool faceRight:false
+    property bool faceLeft: false
+    property bool squat: false
+    property bool fire: false
+    property bool jump: false
 
-    AnimatedSprite {
+    GameSpriteSequence {
         id:_player
+        defaultSource: Qt.resolvedUrl("../../assets/img/Player/player1.png")
+        GameSprite{
+            name:"Idle"
+            frameWidth: 47
+            frameHeight: 65
+            frameCount: 9
+            frameY: 122
+            frameDuration: 200
+        }
+        GameSprite{
+            name:"Attack"
+            frameWidth: 64
+            frameHeight: 62
+            frameCount: 4
+            frameDuration: 125
+        }
+        GameSprite{
+            name:"Squat"   //不知道为什么要高点
+            frameWidth: 52
+            frameHeight: 50
+            frameCount: 2
+            frameY: 62
+            frameDuration: 200
+        }
+        GameSprite{
+            name:"SquatAndFire"
+            frameWidth: 52
+            frameHeight: 49
+            frameCount: 2
+            frameX: 104
+            frameY: 62
+            frameDuration: 25
+        }
+        GameSprite{
+            name:"Run"
+            frameWidth: 42
+            frameHeight: 62
+            frameCount: 8
+            frameY: 186
+            frameDuration: 200
+        }
+        GameSprite{
+            name:"Fire"
+            frameWidth: 63
+            frameHeight: 61
+            frameCount: 4
+            frameY: 248
+            frameDuration: 25
+        }
 
-        frameWidth: 47
-        frameHeight: 62
-        frameCount: 9
-        frameRate: 5
-        source: "../../assets/img/Player/Idle.png"
-        interpolate: true
 
     }
 
@@ -55,95 +104,22 @@ EntityBase {
           "left":Qt.Key_A,
           "right":Qt.Key_D,
           "fire":Qt.Key_J,
-          "jump":Qt.Key_K
+          "jump":Qt.Key_K,
+          "squat":Qt.Key_Shift
       }
 
       // this controller helps to move the player
       onInputActionPressed: (input)=>{
                                 Ctrler.playerInputPressed(input)
+                                if(!player.faceLeft&&!player.faceRight&&!player.fire&&!player.squat){img.jumpTo("Idle")}
                             }
       onInputActionReleased: (input)=>{
                                 Ctrler.playerInputReleased(input)
+                                 if(!player.faceLeft&&!player.faceRight&&!player.fire&&!player.squat){img.jumpTo("Idle")}
                              }
     }
 
-    //玩家的所有状态
-     states: [
-         State {
-             name: "Fire"
-             PropertyChanges {
-                 target: _player
-                 source : "../../assets/img/Player/Shot.png"
-                 frameWidth : 63
-                 frameHeight : 61
-                 frameCount : 1
-                 frameRate :10
 
-             }
-         },
-             State {
-                 name: "Idle"
-                 PropertyChanges {
-                     target: _player
-                     source:"../../assets/img/Player/Idle.png"
-                     frameWidth : 47
-                     frameHeight : 62
-                     frameCount :9
-                     frameRate: 5
-                 }
-             },
-             State {
-                 name: "Left"
-                 PropertyChanges {
-                     target: _player
-                     source:"../../assets/img/Player/LeftWalk.png"
-                     frameWidth : 33
-                     frameHeight : 65
-                     frameCount :7
-                     frameRate: 5
-                 }
-             },
-             State {
-                 name: "Right"
-                 PropertyChanges {
-                     target: _player
-                     source:"../../assets/img/Player/RightWalk.png"
-                     frameWidth : 33
-                     frameHeight : 65
-                     frameCount :7
-                     frameRate: 5
-                 }
-             },
-             State {
-                 name: "Up"
-                 PropertyChanges {
-                     target: _player
-
-                 }
-             },
-             State {
-                 name: "Down"
-                 PropertyChanges {
-                     target: _player
-
-                 }
-             },
-             State{
-                 name:"Jump"
-                 PropertyChanges {
-                     target: _player
-
-                 }
-             },
-             State{
-                 name:"Dodge"
-                 PropertyChanges {
-                     target: _player
-
-                 }
-             }
-
-         ]
 
 
     }

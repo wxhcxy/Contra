@@ -56,73 +56,106 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
 
 //通过检测玩家按下键，改变状态，并做出反应
 function playerInputPressed(input){
-        if(input==="fire")
-        {
-            this.state = "Fire"
-            console.log("Player fire!")
-            playerActions(this.state)
-        }
-        else if(input === "jump"){
-            this.state ="Jump"
-            playerActions(this.state)
-        }
+    if(input==="fire")
+    {
+        player.fire = true
+        console.log("Player fire!")
+        playerActions()
+    }
+    else if(input === "jump"){
+        player.jump =true
+        playerActions()
+    }
 
-        // 通过判断按下的按键来确定移动的方向
-        else if(input === "up"){
-            player.shootUp = true
-            player.direction = Qt.point(0,-1)
-            console.log("Player up!")
-        }
-        else if(input === "down"){
-            player.shootDown = true
-            player.direction = Qt.point(0,1)
-            console.log("Player down!")
+    // 通过判断按下的按键来确定移动的方向
+    else if(input === "up"){
+        player.shootUp = true
+        player.direction = Qt.point(0,-1)
 
-        }
-        else if(input === "left"){
-            player.shootRight = false
-            player.shootLeft = true
-            this.state = "Left"
-            player.direction = Qt.point(-1,0)
-            playerActions(this.state)
-            console.log("Player left!")
-        }
-        else if(input === "right"){
-            player.shootLeft = false
-            player.shootRight = true
-            this.state = "Right"
-            player.direction = Qt.point(1,0)
-            playerActions(this.state)
-            console.log("Player right!")
-        }
-        else if(input === "right" && "down"){
-            player.direction = Qt.point(1,1)
-            console.log("Player right and down!")
-        }
-        else if(input === "right" && "up"){
-            player.direction = Qt.point(1,-1)
-            console.log("Player right and up!")
-        }
-        else if(input === "left" && "up"){
-            player.direction = Qt.point(-1,-1)
-            console.log("Player left and up!")
-        }
-        else if(input === "left" && "down"){
-            player.direction = Qt.point(-1,1)
-            console.log("Player left and down!")
-        }
+        playerActions()
+    }
+    else if(input === "down"){
+        player.shootDown = true
+        player.direction = Qt.point(0,1)
+        playerActions()
+    }
+    else if(input === "left"){
+        player.shootLeft = true
+        player.faceLeft = true
+        player.faceRight = false
+        player.direction = Qt.point(-1,0)
+        playerActions()
+    }
+    else if(input === "right"){
+        player.shootLeft = false
+        player.shootRight = true
+        player.faceRight = true
+        player.faceLeft = false
+        player.direction = Qt.point(1,0)
+        playerActions()
+    }else if(input === "squat"){
+        player.squat = true
+        playerActions()
+    }
+    else if(input === "right" && "down"){
+        player.direction = Qt.point(1,1)
+        console.log("Player right and down!")
+    }
+    else if(input === "right" && "up"){
+        player.direction = Qt.point(1,-1)
+        console.log("Player right and up!")
+    }
+    else if(input === "left" && "up"){
+        player.direction = Qt.point(-1,-1)
+        console.log("Player left and up!")
+    }
+    else if(input === "left" && "down"){
+        player.direction = Qt.point(-1,1)
+        console.log("Player left and down!")
+    }
+
+
 }
 
 //通过检测玩家释放键，改变状态，并做出反应
 function playerInputReleased(input){
+    if(input === "up"){
+        player.shootUp = false
+    }
+    else if(input === "down"){
+        player.shootDown = false
+    }
+    else if(input === "left"){
+        player.faceLeft = false
+    }
+    else if(input === "right"){
+        player.faceRight = false
+    }else if(input === "fire"){
+        player.fire = false
+        if(!player.squat){
+        collider.bodyType = Body.Dynamic
+            if(player.faceLeft ){
+                img.jumpTo("Run")
+                img.mirrorX = true
+           }if(player.faceRight ){
+                img.jumpTo("Run")
+                img.mirrorX = false
+           }
+        }
+        else{
+            img.jumpTo("Squat")
+        }
 
-        this.state = "Idle"
-        if(input === "up"){
-            player.shootUp = false
-        }
-        else if(input === "down"){
-            player.shootDown = false
-        }
+
+    }else if(input === "jump"){
+        player.jump = false
+    }else if(input === "squat"){
+        player.squat = false
+        collider.bodyType = Body.Dynamic
+        if(player.faceLeft || player.faceRight){
+                    img.jumpTo("Run")
+       }
+    }
 
 }
 
@@ -142,7 +175,7 @@ function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
 }
 
 function playerActions(status){
-   if(status === "Fire"){
+   if(player.fire){
        var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
        var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20)
        var bulletsX = 300
@@ -175,10 +208,46 @@ function playerActions(status){
            }
        }
 
+       if(player.squat){
+           img.jumpTo("SquatAndFire")
+           collider.bodyType = Body.Static
+       }else{
+           img.jumpTo("Fire")
+           collider.bodyType = Body.Static
+       }
+
    }
-   if(status === "Jump"){
-       collider.linearVelocity.y = -1200
+    else if(player.faceLeft){
+       img.mirrorX = true
+       if(!player.squat){
+           img.jumpTo("Run")
+       }else{
+           collider.bodyType = Body.Static
+           img.jumpTo("Squat")
+       }
+
    }
+   else if(player.faceRight){
+
+       img.mirrorX = false
+       if(!player.squat){
+           img.jumpTo("Run")
+       }else{
+           collider.bodyType = Body.Static
+           img.jumpTo("Squat")
+       }
+
+
+   }
+   else if(player.squat){
+       collider.bodyType = Body.Static
+       img.jumpTo("Squat")
+   }
+
+   if(player.jump){
+      collider.linearVelocity.y = -1200
+  }
+
 
 }
 
