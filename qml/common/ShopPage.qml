@@ -4,19 +4,59 @@ Rectangle {
     id:_shopPage
     implicitHeight: _grid.height
     implicitWidth: _grid.width
-    color:"green"
     Grid{
         id:_grid
+        rows:3
         columns: 3
-        rows: 3
-        Goods{}
-        Goods{}
-        Goods{}
-        Goods{}
-        Goods{}
-        Goods{}
-        Goods{}
-        Goods{}
-        Goods{}
+        Goods{
+            type:"life"
+            numValue: 100
+            cost:200
+        }
+        Goods{
+            type:"speed"
+            numValue: 1
+            cost:200
+        }
+        Goods{
+            type:"life"
+            numValue: 100
+            cost:200
+        }
+        Goods{
+            type:"life"
+            numValue: 100
+            cost:200
+        }
+        Goods{
+            type:"life"
+            numValue: 100
+            cost:200
+        }
+        Goods{
+            type:"life"
+            numValue: 100
+            cost:200
+        }
+        Goods{
+            type:"speed"
+            numValue: 1
+            cost:200
+        }
+        Goods{
+            type:"speed"
+            numValue: 1
+            cost:200
+        }
+        Goods{
+            type:"speed"
+            numValue: 1
+            cost:200
+        }
+
+
+
+
+
     }
 }

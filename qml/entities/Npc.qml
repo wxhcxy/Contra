@@ -57,7 +57,7 @@ EntityBase {
 
     TapHandler{
         onTapped: {
-            _shop.visible = true
+            _shop.visible === false ? _shop.visible = true : _shop.visible = false
         }
 
     }
@@ -68,9 +68,7 @@ EntityBase {
         visible: false
         opacity: 0.8
         z:1
-        TapHandler{
-            onDoubleTapped: {_shop.visible = false}
-        }
+
     }
 
 

@@ -228,3 +228,28 @@ function moveBack(distance) {
     // 输出新的位置
     console.log("Player moved back to:", newPosX, newPosY);
     }
+
+function buyGoods(){
+   if(player.money >= this.cost){
+       player.money -= this.cost
+   switch(this.type){
+   case "life":
+       player.blood += this.numValue
+       console.log(player.blood)
+       break;
+   case "speed":
+       player.collider.linearDamping -=this.numValue
+       break;
+    default:
+        break;
+   }
+   _text.text = "售完"
+   _text.color = "red"
+   type =""
+   }else{
+       console.log("current money:"+player.money)
+   }
+
+
+}
+
