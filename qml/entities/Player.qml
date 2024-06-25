@@ -13,6 +13,8 @@ EntityBase {
     property int attackMode: 2 //玩家武器攻击模式，如发射多颗子弹
     property int money : 700
 
+    signal bloodChange(int blood)
+
     //玩家子弹射击方向判断
     property bool shootUp: false
     property bool shootDown: false
@@ -39,6 +41,7 @@ EntityBase {
         linearDamping: 10   //调节这个值，可以改变人物移动的速度，值越小，移动速度越快
         fixture.onBeginContact:(other,contactNormal)=>{
                         Ctrler.entityBeginCrash(other,contactNormal)
+                        bloodChange(blood)
                 }
 
     }

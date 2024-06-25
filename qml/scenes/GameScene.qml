@@ -1,5 +1,7 @@
 import Felgo 4.0
 import QtQuick 2.0
+import QtQuick.Controls
+import "../Controller.js" as Ctrler
 import "../game"
 import "../common"
 import "../entities"
@@ -12,6 +14,11 @@ SceneBase {
     gridSize: 32
 
     signal gameOver()
+    signal nextLevel(int background)
+
+    property alias loader: loader
+    property alias bgLoader: bgLoader
+    property alias gameOverRectangle: gameOverRectangle
     property int background: 0
     property string activeLevelFileName
 
@@ -32,6 +39,7 @@ SceneBase {
 
     // 运行时加载关卡的背景图片
     Loader{
+        id: bgLoader
         source: background ? "Background.qml" : ""
     }
 
@@ -39,6 +47,7 @@ SceneBase {
 
     Item {
       id: container
+      property double originX: container.x
 
       // 运行时加载关卡
       Loader {
@@ -55,8 +64,50 @@ SceneBase {
         x: 100; y:255
         width: 32
         height: 63
+
+        onBloodChange: {
+            bloodProgress.value = player.blood/1000
+            console.log(bloodProgress.value)
+        }
       }
 
+    }
+
+    // 血条
+    Row {
+        id: bloodRow
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: 5
+        anchors.leftMargin: 5
+        Image {
+            source: Qt.resolvedUrl("../../assets/img/Player/player.png")
+        }
+        Rectangle {
+            id: _playerBlood
+            height: 10
+            width: 96
+            color: "transparent"
+            ProgressBar {
+                id: bloodProgress
+                anchors.fill: parent
+                indeterminate: true
+                value: 1
+                contentItem: Rectangle {
+                    width: bloodProgress.value / bloodProgress.to * bloodProgress.width
+                    height: bloodProgress.height
+                    radius: 20
+                    color: "red"
+                }
+
+                background: Rectangle{
+                    implicitWidth: bloodProgress.width
+                    implicitHeight: bloodProgress.height
+                    radius: 20
+                    color: "gray"
+                }
+            }
+        }
     }
 
     onActiveLevelFileNameChanged: {
@@ -105,6 +156,84 @@ SceneBase {
 
       limitTop: 0
       limitBottom: 1024
+    }
+
+    Rectangle {
+        id: gameOverRectangle
+        x: parent.width/2 - width/2
+        y: parent.height/2 -height/2
+        width: parent.width*0.7
+        height: parent.height*0.7
+        visible: false
+        opacity: 0.8
+        color: "#1a1c17"
+      Column{
+          anchors.centerIn: parent
+        Text {
+            x: parent.width/2 - width/2
+            y: parent.height/2 -height
+            text: qsTr("Win")
+            font.family: fontLoader.name
+            font.pixelSize: 76
+        }
+        Text {
+            text: qsTr("Next Level?")
+            font.family: fontLoader.name
+            font.pixelSize: 44
+        }
+        Row{
+            x: parent.width/2 - width/2
+            y: parent.height/2 -height
+            spacing: 40
+          Button {
+              width: 40
+              height: 30
+              Text {
+                  anchors.centerIn: parent
+                  text: qsTr("YES")
+                  font.family: fontLoader.name
+                  font.pixelSize: 23
+                  color: "black"
+              }
+              background: Rectangle {
+                  color: "transparent"
+              }
+              onClicked: {
+                  player.x = 100
+                  player.y = 255
+                  player.blood = 1000
+                  nextLevel(++gameScene.background)
+              }
+          }
+          Button {
+              width: 40
+              height: 30
+              Text {
+                  anchors.centerIn: parent
+                  text: qsTr("NO")
+                  font.family: fontLoader.name
+                  font.pixelSize: 23
+                  color: "black"
+              }
+              background: Rectangle {
+                  color: "transparent"
+              }
+
+              onClicked: {
+                  gameWindow.state = "menu"
+                  gameOverRectangle.visible = false
+                  player.x = 100
+                  player.y = 255
+                  player.blood = 1000
+              }
+          }
+        }
+      }
+
+    }
+
+    onGameOver: {
+        gameOverRectangle.visible = true
     }
 
 }

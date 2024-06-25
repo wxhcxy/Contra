@@ -8,11 +8,11 @@ GameWindow {
   state: "menu"
   activeScene: menuScene
 
-  EntityManager {
+EntityManager {
       entityContainer: gameScene
   }
 
-  FontLoader {
+FontLoader {
       id: fontLoader
       source: Qt.resolvedUrl("fonts/contra.ttf")
   }
@@ -43,6 +43,14 @@ GameWindow {
     // set scene alignment
     sceneAlignmentX: "left"
     sceneAlignmentY: "top"
+
+    onNextLevel: background => {
+                     gameOverRectangle.visible = false
+                     loader.source = Qt.resolvedUrl("game/Level" + background + ".qml")
+                     gameScene.setLevel("Level" + background + ".qml")
+                     // bgLoader.source = Qt.resolvedUrl("game/Background.qml")
+                     gameWindow.state = "game"
+    }
   }
 
 

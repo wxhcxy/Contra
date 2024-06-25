@@ -78,5 +78,11 @@ Item {
         source: Qt.resolvedUrl("../../assets/img/tank/tankExp.png")
     }
 
+    Component.onCompleted: {
+        camera.limitRight = 2200
+        camera.limitBottom = 400
+        player.x = 100
+        player.y = 240
+    }
 
 }

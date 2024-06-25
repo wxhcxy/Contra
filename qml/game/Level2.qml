@@ -120,4 +120,10 @@ Item {
 
     //下边界
     Ground{x:0;y:1024;size:64;path:"ground2"}
+
+    Component.onCompleted: {
+        camera.limitLeft = 0
+        camera.limitTop = 0
+        camera.limitBottom = 1024
+    }
 }
