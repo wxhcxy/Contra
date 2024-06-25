@@ -45,12 +45,6 @@ SceneBase {
           id: loader
           source: activeLevelFileName ? "../game/" + activeLevelFileName : ""
           onLoaded: {
-              if(activeLevelFileName==="Level1.qml"){
-                  camera.limitRight = 2200
-                  camera.limitBottom = 400
-                  player.x = 100
-                  player.y = 240
-              }
               //console.log(bg.sourceImage)
           }
       }
@@ -63,6 +57,35 @@ SceneBase {
         height: 63
       }
 
+    }
+
+    onActiveLevelFileNameChanged: {
+        if(activeLevelFileName==="Level1.qml"){
+            camera.limitRight = 2200
+            camera.limitBottom = 400
+            player.x = 100
+            player.y = 240
+            leftCameraTimer.start()
+        }
+        else{
+            leftCameraTimer.stop()
+        }
+    }
+
+    //定时器更新摄像机的左边位置，玩家前进之后，不能再回到窗口左边未显示的场景
+    property int tmpLeft: 0
+    Timer{
+        id:leftCameraTimer
+        running: false
+        repeat: true
+        interval: 300
+        onTriggered: {
+            if(Math.abs(container.x)>tmpLeft){
+                tmpLeft = Math.abs(container.x)
+                camera.limitLeft = tmpLeft
+            }
+            camera.limitLeft = tmpLeft
+        }
     }
 
 

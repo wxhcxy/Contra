@@ -27,9 +27,11 @@ Item {
     /*悬空道路*/
 
     Ground {id:rightWall; x:Math.abs(container.x-596) ; y:0; size: 20;path:"stone"; rotation: 90; opacity: 0}
+    Ground {id:leftWall; x:Math.abs(container.x-2) ; y:0; size: 19;path:"stone"; rotation: 90; opacity: 0}
+    Ground {x:2220 ; y:0; size: 18;path:"stone"; rotation: 90; opacity: 0}
 
     //顶部墙壁阻止越界
-    Ground { x:0; y:-20; size: 50;path:"stone"}
+    Ground { x:0; y:-20; size: 100;path:"stone"}
     //左侧墙壁阻止越界
     Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
 
