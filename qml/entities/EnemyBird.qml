@@ -21,58 +21,20 @@ Item {
          birdEnemy.destroy()
         }
     }*/
-        SequentialAnimation {
-            id: _birdBegin
-            ScriptAction { script: bird.goalSprite = "6"; }
-            loops: Animation.Infinite    // 设置动画为无限循环
+
+    GameSpriteSequence{
+        id:bird
+        width: 96
+        height: 96
+        defaultSource: Qt.resolvedUrl("../../assets/img/Bird/bird.png")
+        running: true
+        GameSprite{
+            frameWidth: 200
+            frameHeight: 200
+            frameCount: 6
+            frameDuration: 180
         }
-
-        SpriteSequence {
-            id: bird; width: 96; height: 96; goalSprite: ""
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            Sprite{
-                name: "1"; source: "../../assets/img/Bird/00.png"
-                frameDuration: 200
-                to: {"2":1}
-            }
-
-            Sprite{
-                name: "2"; source: "../../assets/img/Bird/01.png"
-                frameDuration: 200
-                to: {"3":1}
-            }
-            Sprite{
-                name: "3"; source: "../../assets/img/Bird/02.png"
-                frameDuration: 200
-                to: {"4":1}
-            }
-            Sprite{
-                name: "4"; source: "../../assets/img/Bird/03.png"
-                frameDuration: 200
-                to: {"5":1}
-            }
-            Sprite{
-                name: "5"; source: "../../assets/img/Bird/04.png"
-                frameDuration: 200
-                to: {"6":1}
-            }
-
-            Sprite{
-                name: "6"; source: "../../assets/img/Bird/05.png"
-                frameDuration: 200
-                to: {"1":1}
-            }
-        }
-
-        // 添加gif图片发现有背景图
-        /* AnimatedImage {
-            width: 32
-            height: 32
-            id:_birdEnemy
-            source: Qt.resolvedUrl("../../assets/img/bird_die.gif")
-            paused: false
-        } */
+    }
 
         Timer {
              id: trackTimer
@@ -92,19 +54,19 @@ Item {
 
                      // player在鸟的左上角
                      if(birdEnemy.x > player.x && birdEnemy.y > player.y)
-                     { birdEnemy.x -= 5; birdEnemy.y -= 5 }
+                     { birdEnemy.x -= 5; birdEnemy.y -= 5; bird.mirrorX = false}
 
                      // player在鸟的左下角
                      if(birdEnemy.x > player.x && birdEnemy.y < player.y)
-                     { birdEnemy.x -= 5; birdEnemy.y += 5 }
+                     { birdEnemy.x -= 5; birdEnemy.y += 5; bird.mirrorX = false}
 
                      // player在鸟的右上角
                      if(birdEnemy.x < player.x && birdEnemy.y > player.y)
-                     { birdEnemy.x += 5; birdEnemy.y -= 5 }
+                     { birdEnemy.x += 5; birdEnemy.y -= 5; bird.mirrorX = true}
 
                      // player在鸟的右下角
                      if(birdEnemy.x < player.x && birdEnemy.y < player.y)
-                     { birdEnemy.x += 5; birdEnemy.y += 5 }
+                     { birdEnemy.x += 5; birdEnemy.y += 5; bird.mirrorX = true }
 
                      // 计算玩家与鸟之间的距离
                      var dx2 = Math.abs(birdEnemy.x - player.x )
