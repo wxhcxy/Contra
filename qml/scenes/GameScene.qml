@@ -61,10 +61,7 @@ SceneBase {
       // the player entity
       Player {
         id: player
-        x: 100; y:255
-        width: 32
-        height: 63
-
+        x: 100; y:250
         onBloodChange: {
             bloodProgress.value = player.blood/1000
             console.log(bloodProgress.value)

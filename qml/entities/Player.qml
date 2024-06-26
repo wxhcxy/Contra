@@ -5,6 +5,8 @@ EntityBase {
     id:player
     entityId: "player"
     entityType: "player1"
+    width: 40
+    implicitHeight: _player.height
     property alias controller: _controller
     property alias img : _player
     property alias collider : _collider
@@ -20,6 +22,7 @@ EntityBase {
     property bool shootDown: false
     property bool shootLeft: false
     property bool shootRight: true
+    property bool continuousShoot: false
     //判断玩家当前方向
     property bool faceRight:false
     property bool faceLeft: false
@@ -27,8 +30,14 @@ EntityBase {
     property bool fire: false
     property bool jump: false
 
+    Rectangle{
+        anchors.fill: parent
+        color: "red"
+    }
+
     GameSpriteSequence {
         id:_player
+        anchors.centerIn: parent
         defaultSource: Qt.resolvedUrl("../../assets/img/Player/player1.png")
         GameSprite{
             name:"Idle"
@@ -119,9 +128,20 @@ EntityBase {
                              }
     }
 
-
-
+    Timer{
+        id: continuousShootTimer
+        running: false
+        repeat: true
+        interval: 200
+        onTriggered: {
+            console.log("2222222222222222222222222")
+            if(continuousShoot){
+                Ctrler.playerActions()
+            }
+        }
 
     }
+
+}
 
 

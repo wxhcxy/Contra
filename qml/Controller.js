@@ -58,6 +58,8 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
 function playerInputPressed(input){
     if(input==="fire")
     {
+        player.continuousShoot = true
+        continuousShootTimer.start()
         player.fire = true
         console.log("Player fire!")
         playerActions()
@@ -94,6 +96,7 @@ function playerInputPressed(input){
         player.direction = Qt.point(1,0)
         playerActions()
     }else if(input === "squat"){
+        player.y+=30
         player.squat = true
         playerActions()
     }
@@ -131,6 +134,8 @@ function playerInputReleased(input){
     else if(input === "right"){
         player.faceRight = false
     }else if(input === "fire"){
+        player.continuousShoot = false
+        continuousShootTimer.stop()
         player.fire = false
         if(!player.squat){
         collider.bodyType = Body.Dynamic
@@ -150,6 +155,7 @@ function playerInputReleased(input){
     }else if(input === "jump"){
         player.jump = false
     }else if(input === "squat"){
+        player.y-=30
         player.squat = false
         collider.bodyType = Body.Dynamic
         if(player.faceLeft || player.faceRight){
@@ -177,7 +183,7 @@ function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
 function playerActions(status){
    if(player.fire){
        var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
-       var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -20)
+       var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -6)
        var bulletsX = 300
        var bulletsY = 0
 

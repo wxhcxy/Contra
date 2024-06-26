@@ -7,16 +7,16 @@ Enemy{
 
     entityType: "enemyTank"
     source: Qt.resolvedUrl("../../assets/img/tank1.png")
-    width: 38
-    height: 34
+    width: 60
+    height: 58
 
 
     Image {
         id:_tankGun
-        x:4.6
-        y:10
-        width: 36
-        height: 16
+        x:14
+        y:14
+        width: 46
+        height: 26
         source: Qt.resolvedUrl("../../assets/img/tankGun1.png")
     }
 

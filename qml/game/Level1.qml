@@ -24,6 +24,10 @@ Item {
     Ground { x:1130; y:240; size: 3;path:"stone"}
     Ground { x:1280; y:180; size: 5;path:"stone"}
     Ground { x:1480; y:270; size: 3;path:"stone"}
+    Ground { x:1700; y:270; size: 3;path:"stone"}
+    Ground { x:1850; y:190; size: 5;path:"stone"}
+    Ground { x:2010; y:90; size: 6;path:"stone"}
+    Ground { x:2010; y:0; size: 4;path:"stone"; rotation: 90}
     /*悬空道路*/
 
     Ground {id:rightWall; x:Math.abs(container.x-596) ; y:0; size: 20;path:"stone"; rotation: 90; opacity: 0}
@@ -46,7 +50,10 @@ Item {
     EnemyTank{x:850; y:260}
     EnemyTank{x:1060; y:350}
     EnemyTank{x:1260; y:-8}
+    EnemyTank{x:1350; y:150}
     EnemyTank{x:1400; y:350}
+    EnemyTank{x:2030; y:50}
+    EnemyTank{x:2130; y:50}
 
     EnemyBird {x: 340; y: 100}
     EnemyBird {x: 1500; y: 200}
@@ -86,7 +93,7 @@ Item {
         camera.limitRight = 2200
         camera.limitBottom = 400
         player.x = 100
-        player.y = 240
+        player.y = 250
     }
 
 }
