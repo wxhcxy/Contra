@@ -134,7 +134,6 @@ EntityBase {
         repeat: true
         interval: 200
         onTriggered: {
-            console.log("2222222222222222222222222")
             if(continuousShoot){
                 Ctrler.playerActions()
             }

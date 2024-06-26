@@ -64,7 +64,7 @@ SceneBase {
         x: 100; y:250
         onBloodChange: {
             bloodProgress.value = player.blood/1000
-            console.log(bloodProgress.value)
+            //console.log(bloodProgress.value)
         }
       }
 

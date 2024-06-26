@@ -9,6 +9,7 @@ EntityBase {
     property alias boxCollider: _boxCollider
     property int treasureMode: 0//宝物种类，作用
     entityId: "reward"
+    entityType: "reward1"
 
 
     MultiResolutionImage{

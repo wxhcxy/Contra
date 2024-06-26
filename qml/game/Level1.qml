@@ -19,7 +19,7 @@ Item {
     Ground { x:350; y:240; size: 3;path:"stone"}
     Ground { x:480; y:180; size: 3;path:"stone"}
     Ground { x:630; y:220; size: 3;path:"stone"}
-    Ground { x:830; y:280; size: 3;path:"stone"}
+    Ground { x:830; y:260; size: 3;path:"stone"}
     Ground { x:960; y:210; size: 3;path:"stone"}
     Ground { x:1130; y:240; size: 3;path:"stone"}
     Ground { x:1280; y:180; size: 5;path:"stone"}
@@ -38,6 +38,11 @@ Item {
     Ground { x:0; y:-20; size: 100;path:"stone"}
     //左侧墙壁阻止越界
     Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
+
+    Laser{x:410; y:0; z:2}
+    Laser{x:300; y:390; z:2; elongateHeight:100; rotation:180}
+    Laser{x:880; y:390; z:2; elongateHeight:70; rotation:180}
+    Laser{x:1900; y:0; z:2; elongateHeight:180}
 
 
     EnemyZombie{x:360; y:220; width: 55; height: 25}
@@ -61,6 +66,7 @@ Item {
 
 
     EnemyBoss1{x:2100; y:250; width: 100; height: 100}
+
 
     Reward{x:280; y:350; width: 30; height: 30; treasureMode: 1}
     Reward{x:400; y:350; width: 30; height: 30; treasureMode: 2;

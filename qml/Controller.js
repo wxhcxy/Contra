@@ -10,7 +10,6 @@ function entityBeginCrash(otherEntity,contactNormal) {
         this.destroy()
     }
     if(this.entityType === "playerBullet"&&otherEntity.entityType==="player1"){//检测该实体是否为子弹
-        console.log("34514")
         return
     }
     else if(this.entityId === "player"){ //检测该实体是否为玩家
@@ -42,6 +41,9 @@ function entityBeginCrash(otherEntity,contactNormal) {
 function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){//检测该otherEntity是否为enemy
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+    }
+    else if(otherEntity.entityId === "laser"){//检测该otherEntity是否为ground
+        bloodCalculate(currentEntity,otherEntity,contactNormal)
     }
     else if(otherEntity.entityType === "enemyBullet"){//检测该otherEntity是否为enemy
         bloodCalculate(currentEntity,otherEntity,contactNormal) //敌人子弹打中玩家，计算玩家血量
