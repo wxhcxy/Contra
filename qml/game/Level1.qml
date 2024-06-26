@@ -45,6 +45,7 @@ Item {
     Laser{x:1900; y:0; z:2; elongateHeight:180}
 
 
+
     EnemyZombie{x:360; y:220; width: 55; height: 25}
     EnemyZombie{x:660; y:350; width: 55; height: 25}
     EnemyZombie{x:850; y:350; width: 55; height: 25}
@@ -66,6 +67,7 @@ Item {
 
 
     EnemyBoss1{x:2100; y:250; width: 100; height: 100}
+
 
 
     Reward{x:280; y:350; width: 30; height: 30; treasureMode: 1}

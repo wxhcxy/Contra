@@ -4,19 +4,14 @@ import Felgo 4.0
 EntityBase {
     id:_laserEntityBase
 
-    property alias boxCollider: _boxCollider
     property int attackPower: 10
     property int elongateHeight: 200
+    z:3
 
     entityId: "laser"
     entityType: "laser"
     implicitWidth:_laser.width
     implicitHeight:_laser.height
-
-    Rectangle{
-        anchors.fill: parent
-        color: "red"
-    }
 
     MultiResolutionImage{
         id:_laser
@@ -35,12 +30,15 @@ EntityBase {
 
     }
 
+
     BoxCollider{
         id:_boxCollider
         implicitWidth: _laserEntityBase.width
         implicitHeight:_laserEntityBase.height
         anchors.fill:parent
         bodyType: Body.Static
+        sensor: true
     }
+
 
 }

@@ -113,6 +113,7 @@ SceneBase {
             camera.limitBottom = 400
             player.x = 100
             player.y = 240
+            tmpLeft = 0
             leftCameraTimer.start()
         }
         else{
@@ -219,9 +220,13 @@ SceneBase {
               onClicked: {
                   gameWindow.state = "menu"
                   gameOverRectangle.visible = false
+                  leftCameraTimer.stop()
+                  tmpLeft = 0
+                  camera.limitLeft = 0
                   player.x = 100
                   player.y = 255
                   player.blood = 1000
+                  activeLevelFileName=""
               }
           }
         }

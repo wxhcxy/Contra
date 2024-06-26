@@ -5,7 +5,7 @@ EntityBase {
     id:player
     entityId: "player"
     entityType: "player1"
-    width: 40
+    width: 36
     implicitHeight: _player.height
     property alias controller: _controller
     property alias img : _player
@@ -29,11 +29,6 @@ EntityBase {
     property bool squat: false
     property bool fire: false
     property bool jump: false
-
-    Rectangle{
-        anchors.fill: parent
-        color: "red"
-    }
 
     GameSpriteSequence {
         id:_player
