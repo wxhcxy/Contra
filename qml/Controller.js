@@ -51,7 +51,9 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     }
     else if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
-        currentEntity.state = "Idle"
+        if(otherEntity.entityType === "ground2"){
+            player.jump =false
+        }
     }
 
 }
@@ -67,8 +69,12 @@ function playerInputPressed(input){
         playerActions()
     }
     else if(input === "jump"){
-        player.jump =true
-        playerActions()
+        if(!player.jump){
+            player.jump = true
+            collider.linearVelocity.y = -1500
+            playerActions()
+
+       }
     }
 
     // 通过判断按下的按键来确定移动的方向
@@ -80,6 +86,7 @@ function playerInputPressed(input){
     }
     else if(input === "down"){
         player.shootDown = true
+        player.faceDown = true
         player.direction = Qt.point(0,1)
         playerActions()
     }
@@ -88,6 +95,7 @@ function playerInputPressed(input){
         player.faceLeft = true
         player.faceRight = false
         player.direction = Qt.point(-1,0)
+        img.mirrorX = true
         playerActions()
     }
     else if(input === "right"){
@@ -96,11 +104,14 @@ function playerInputPressed(input){
         player.faceRight = true
         player.faceLeft = false
         player.direction = Qt.point(1,0)
+        img.mirrorX = false
         playerActions()
     }else if(input === "squat"){
-        player.y+=30
-        player.squat = true
-        playerActions()
+        if(!player.jump){
+            player.squat = true
+            player.y+=18
+            playerActions()
+        }
     }
     else if(input === "right" && "down"){
         player.direction = Qt.point(1,1)
@@ -129,9 +140,11 @@ function playerInputReleased(input){
     }
     else if(input === "down"){
         player.shootDown = false
+        player.faceDown = false
     }
     else if(input === "left"){
         player.faceLeft = false
+
     }
     else if(input === "right"){
         player.faceRight = false
@@ -155,11 +168,14 @@ function playerInputReleased(input){
 
 
     }else if(input === "jump"){
-        player.jump = false
+
     }else if(input === "squat"){
-        player.y-=30
+
         player.squat = false
         collider.bodyType = Body.Dynamic
+        if(player.fire){
+            img.jumpTo("Fire")
+        }
         if(player.faceLeft || player.faceRight){
                     img.jumpTo("Run")
        }
@@ -216,46 +232,58 @@ function playerActions(status){
            }
        }
 
-       if(player.squat){
-           img.jumpTo("SquatAndFire")
-           collider.bodyType = Body.Static
+       if(!player.jump){
+            if(player.squat){
+            img.jumpTo("SquatAndFire")
+            collider.bodyType = Body.Static
+            }
+            else{
+            img.jumpTo("Fire")
+            collider.bodyType = Body.Static
+           }
        }else{
-           img.jumpTo("Fire")
-           collider.bodyType = Body.Static
+           if(!player.squat){
+               img.jumpTo("Fire")
+           }
        }
 
    }
-    else if(player.faceLeft){
-       img.mirrorX = true
-       if(!player.squat){
-           img.jumpTo("Run")
-       }else{
-           collider.bodyType = Body.Static
-           img.jumpTo("Squat")
-       }
+   else if(player.faceLeft){
+      img.mirrorX = true
+      if(!player.squat){
+          img.jumpTo("Run")
+      }else{
+          if(!player.jump){
+          collider.bodyType = Body.Static
+          img.jumpTo("Squat")
+          }
+      }
 
-   }
+  }
    else if(player.faceRight){
 
        img.mirrorX = false
        if(!player.squat){
            img.jumpTo("Run")
        }else{
+           if(!player.jump){
            collider.bodyType = Body.Static
            img.jumpTo("Squat")
+           }
        }
 
 
    }
    else if(player.squat){
+       if(!player.jump){
        collider.bodyType = Body.Static
        img.jumpTo("Squat")
+
+       }
+
+   }else if(player.faceDown){
+
    }
-
-   if(player.jump){
-      collider.linearVelocity.y = -1200
-  }
-
 
 }
 

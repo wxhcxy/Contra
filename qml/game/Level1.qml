@@ -10,23 +10,23 @@ Item {
 
 
     //底部地面
-    Ground { x:0; y:370; size: 200;path:"stone"}
+    Ground { x:0; y:370; size: 200;path:"stone";entityType: "ground2"}
 
     //跳跃距离应该为100
     /*悬空道路*/
-    Ground { x:0; y:270; size: 5;path:"stone"}
-    Ground { x:180; y:160; size: 4;path:"stone"}
-    Ground { x:350; y:240; size: 3;path:"stone"}
-    Ground { x:480; y:180; size: 3;path:"stone"}
-    Ground { x:630; y:220; size: 3;path:"stone"}
-    Ground { x:830; y:260; size: 3;path:"stone"}
-    Ground { x:960; y:210; size: 3;path:"stone"}
-    Ground { x:1130; y:240; size: 3;path:"stone"}
-    Ground { x:1280; y:180; size: 5;path:"stone"}
-    Ground { x:1480; y:270; size: 3;path:"stone"}
-    Ground { x:1700; y:270; size: 3;path:"stone"}
-    Ground { x:1850; y:190; size: 5;path:"stone"}
-    Ground { x:2010; y:90; size: 6;path:"stone"}
+    Ground { x:0; y:270; size: 5;path:"stone";entityType: "ground2"}
+    Ground { x:180; y:160; size: 4;path:"stone";entityType: "ground2"}
+    Ground { x:350; y:240; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:480; y:180; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:630; y:220; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:830; y:260; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:960; y:210; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:1130; y:240; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:1280; y:180; size: 5;path:"stone";entityType: "ground2"}
+    Ground { x:1480; y:270; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:1700; y:270; size: 3;path:"stone";entityType: "ground2"}
+    Ground { x:1850; y:190; size: 5;path:"stone";entityType: "ground2"}
+    Ground { x:2010; y:90; size: 6;path:"stone";entityType: "ground2"}
     Ground { x:2010; y:0; size: 4;path:"stone"; rotation: 90}
     /*悬空道路*/
 

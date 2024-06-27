@@ -14,7 +14,6 @@ EntityBase {
     property int blood: 1000
     property int attackMode: 0 //玩家武器攻击模式，如发射多颗子弹
     property int money : 700
-
     signal bloodChange(int blood)
 
     //玩家子弹射击方向判断
@@ -26,6 +25,7 @@ EntityBase {
     //判断玩家当前方向
     property bool faceRight:false
     property bool faceLeft: false
+    property bool faceDown:false
     property bool squat: false
     property bool fire: false
     property bool jump: false
