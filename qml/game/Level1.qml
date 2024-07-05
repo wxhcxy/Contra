@@ -25,7 +25,7 @@ Item {
     Ground { x:1280; y:180; size: 5;path:"stone";entityType: "ground2"}
     Ground { x:1480; y:270; size: 3;path:"stone";entityType: "ground2"}
     Ground { x:1700; y:270; size: 3;path:"stone";entityType: "ground2"}
-    Ground { x:1850; y:190; size: 5;path:"stone";entityType: "ground2"}
+    Ground { x:1850; y:170; size: 5;path:"stone";entityType: "ground2"}
     Ground { x:2010; y:90; size: 6;path:"stone";entityType: "ground2"}
     Ground { x:2010; y:0; size: 4;path:"stone"; rotation: 90}
     /*悬空道路*/
@@ -66,7 +66,7 @@ Item {
     EnemyBird {x: 1100; y: 70}
 
 
-    EnemyBoss1{x:2100; y:250; width: 100; height: 100}
+    EnemyBoss1{x:2120; y:140}
 
 
 

@@ -7,15 +7,15 @@ Enemy{
 
     entityType: "enemyBoss1"
     property int attackMode: 0  //BOSS的攻击模式
-
-    width: 38
-    height: 34
     blood: 3000
+    implicitWidth: _boss.width
+    implicitHeight: _boss.height
 
-    Rectangle{
+    Image {
+        id:_boss
         width: 100
-        height: 100
-        color: "red"
+        height: 300
+        source: Qt.resolvedUrl("../../assets/img/boss/boss1.png")
     }
 
     boxCollider.fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
