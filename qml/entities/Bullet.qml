@@ -6,6 +6,8 @@ EntityBase{
     entityId: "bullet"
     entityType: "bullet"
 
+    poolingEnabled: true
+
     property alias boxCollider: _boxCollider
 
     x:shootPosition.x

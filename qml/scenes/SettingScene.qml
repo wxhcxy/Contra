@@ -62,7 +62,7 @@ SceneBase {
         Button {
             width: 100
             height: 50
-            property bool active: true
+            property bool active: settings.musicEnabled
             property string activeString: active ? "on" : "off"
             background: Rectangle {
                 color: "transparent"
@@ -72,13 +72,14 @@ SceneBase {
                 font.family: fontLoader.name
                 text: qsTr(parent.activeString)
             }
-            onClicked: active = !active
+            onClicked: settings.musicEnabled ^= true
         }
 
         Button {
+            id: soundButton
             width: 100
             height: 50
-            property bool active: true
+            property bool active: settings.soundEnabled
             property string activeString: active ? "on" : "off"
             background: Rectangle {
                 color: "transparent"
@@ -88,7 +89,7 @@ SceneBase {
                 font.family: fontLoader.name
                 text: qsTr(parent.activeString)
             }
-            onClicked: active = !active
+            onClicked: settings.soundEnabled ^= true
         }
 
     }

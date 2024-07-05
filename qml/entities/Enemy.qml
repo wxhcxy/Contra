@@ -8,6 +8,8 @@ EntityBase {
     property int blood: 100 //敌人血量
     entityId: "enemy"
 
+    poolingEnabled: true
+
 
     MultiResolutionImage{
         id:_enemy

@@ -30,7 +30,9 @@ Enemy{
         squaby.z = 2
         squaby.running = true
         squaby.visible = true
+        if(settings.soundEnabled){
         tankExplosion.play()
+        }
     }
 
 

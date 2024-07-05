@@ -15,6 +15,7 @@ SceneBase {
 
     signal gameOver()
     signal nextLevel(int background)
+    signal leaveLevel(int background)
 
     property alias loader: loader
     property alias bgLoader: bgLoader
@@ -29,6 +30,7 @@ SceneBase {
     EntityManager {
       id: entityManager
       entityContainer: container
+      poolingEnabled: true
     }
 
     PhysicsWorld {
@@ -170,11 +172,12 @@ SceneBase {
         Text {
             x: parent.width/2 - width/2
             y: parent.height/2 -height
-            text: qsTr("Win")
+            text: qsTr("Game Over!")
             font.family: fontLoader.name
             font.pixelSize: 76
         }
         Text {
+            x: parent.width/2 - width/2
             text: qsTr("Next Level?")
             font.family: fontLoader.name
             font.pixelSize: 44
@@ -201,6 +204,7 @@ SceneBase {
                   player.y = 255
                   player.blood = 1000
                   nextLevel(++gameScene.background)
+                  gameOverRectangle.visible = false
               }
           }
           Button {
@@ -221,7 +225,7 @@ SceneBase {
                   gameWindow.state = "menu"
                   gameOverRectangle.visible = false
                   leftCameraTimer.stop()
-                  tmpLeft = 0
+                  //tmpLeft = 0
                   camera.limitLeft = 0
                   player.x = 100
                   player.y = 255
@@ -234,8 +238,22 @@ SceneBase {
 
     }
 
+    Timer {
+        id: rectangleTimer
+        interval: 100
+        repeat: false
+        onTriggered: gameOverRectangle.visible = true
+    }
+
     onGameOver: {
         gameOverRectangle.visible = true
+    }
+
+    Keys.onPressed: (event)=> {
+        if(event.key === Qt.Key_Space){
+           gameOverRectangle.visible = true
+        //   rectangleTimer.start()
+        }
     }
 
 }

@@ -28,7 +28,9 @@ Bullet{
     }
 
     onEntityCreated: {
+        if(settings.soundEnabled){
         playerShootMusic.play()
+        }
     }
 
 }
