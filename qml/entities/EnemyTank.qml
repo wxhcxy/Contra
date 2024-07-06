@@ -9,6 +9,7 @@ Enemy{
     source: Qt.resolvedUrl("../../assets/img/tank1.png")
     width: 60
     height: 58
+    attackPower: 20
 
 
     Image {

@@ -7,6 +7,7 @@ Enemy{
     id:_zombie
     property bool bossCreateZombie: false
     //source:Qt.resolvedUrl("../../assets/img/enemyWalk.png")
+    attackPower: 50
 
 
     TwoAxisController{

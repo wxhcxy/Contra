@@ -11,8 +11,7 @@ Enemy{
     blood: 200
     z:-1
     source:Qt.resolvedUrl("../../assets/img/laser/ironplate.png")
-
-    property int attackPower: 80
+    attackPower: 80
 
 
     boxCollider.fixture.onBeginContact: (other, contactNormal)=>{

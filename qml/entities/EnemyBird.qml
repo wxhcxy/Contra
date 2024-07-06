@@ -9,6 +9,7 @@ Enemy {
     property double originY: y
     width: 30
     height: 20
+    attackPower: 30
 
 Item {
     id:_birdItem

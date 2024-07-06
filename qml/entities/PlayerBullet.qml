@@ -9,6 +9,9 @@ Bullet{
     //width: 70
     //height: 70
     rotation: 0
+    imageSource: Qt.resolvedUrl("../../assets/img/bullet/playerbullet.png")
+    imageWeight: 20
+    imageHeight: 20
 
     boxCollider.fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
                                             Ctrler.entityBeginCrash(other,contactNormal)

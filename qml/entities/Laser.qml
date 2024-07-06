@@ -5,7 +5,7 @@ EntityBase {
     id:_laserEntityBase
 
     property alias laserTimer: _laserTimer
-    property int attackPower: 10
+    property int attackPower: 80
     property int elongateHeight: 200
     z:3
 

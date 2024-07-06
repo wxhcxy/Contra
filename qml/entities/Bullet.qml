@@ -9,6 +9,9 @@ EntityBase{
     poolingEnabled: true
 
     property alias boxCollider: _boxCollider
+    property alias imageSource: bulletImg.source
+    property alias imageWeight: bulletImg.width
+    property alias imageHeight: bulletImg.height
 
     x:shootPosition.x
     y:shootPosition.y
@@ -21,23 +24,12 @@ EntityBase{
 
     Image {
         id:bulletImg
-        width: 70
-        height: 70
+        width: 90
+        height: 90
         //rotation: 90
-        //anchors.fill: parent
         anchors.centerIn: parent
         source: {
-            return "../../assets/img/tankBullet1.png"
-            /*
-                    if(bulletType===0)
-                    {
-                        return "../../assets/img/bullet0.png"
-                    }
-                    if(bulletType===1)
-                    {
-                        return "../../assets/img/bullet1.png"
-                    }
-                    */
+            return Qt.resolvedUrl("../../assets/img/bullet/tankBullet1.png")
         }
 
     }

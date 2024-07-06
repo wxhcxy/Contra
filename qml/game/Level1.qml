@@ -40,6 +40,11 @@ Item {
     Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
 
     EnemyIronPlate{x:370; y:250; width: 60; height: 150}
+    EnemyIronPlate{x:650; y:0; width: 60; height: 250}
+    EnemyIronPlate{x:850; y:0; width: 60; height: 280}
+    EnemyIronPlate{x:1220; y:0; width: 60; height: 280}
+    EnemyIronPlate{x:1600; y:20; width: 60; height: 400}
+    EnemyIronPlate{x:1800; y:120; width: 60; height: 260}
 
     Laser{x:410; y:0; z:2}
     Laser{x:300; y:390; z:2; elongateHeight:100; rotation:180}

@@ -10,6 +10,7 @@ Enemy{
     blood: 3000
     implicitWidth: _boss.width
     implicitHeight: _boss.height
+    attackPower: 100
 
     Image {
         id:_boss
@@ -28,30 +29,26 @@ Enemy{
 
 
     Timer{
-        id:tankRotation
-        interval: 2
+        id:bossTrack    //判断玩家与boss的距离，距离达到时，boss开始攻击
+        interval: 1000
         running: true
         repeat: true
         onTriggered: {
-            if((Math.abs(player.x-_boss1.x)>310)||(Math.abs(player.y-_boss1.y)>310))
+            if((Math.abs(player.x-_boss1.x)<=310))
             {
-                tankAttack.stop()
-                zombieCreate.stop()
-            }
-            if((Math.abs(player.x-_boss1.x)<=310)||(Math.abs(player.y-_boss1.y)<=310))
-            {
-                tankAttack.start()
+                bossAttack.start()
                 zombieCreate.start()
             }
         }
     }
     Timer{
-        id:tankAttack
+        id:bossAttack
         interval: 1300
-        running: true
+        running: false
         repeat: true
         property  int num : 0
         onTriggered: {
+            bossTrack.stop()
             var bulletUrl = Qt.resolvedUrl("../entities/BulletEnemy.qml")
             var shootPosition = Qt.point(_boss1.x+_boss1.width/2, _boss1.y+_boss1.height/2)
             var startAngle = 90 //子弹最初开始射出的角度

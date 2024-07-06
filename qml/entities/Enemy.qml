@@ -6,6 +6,7 @@ EntityBase {
     property alias source: _enemy.source
     property alias boxCollider: _boxCollider
     property int blood: 100 //敌人血量
+    property int attackPower: 30
     entityId: "enemy"
 
     poolingEnabled: true
