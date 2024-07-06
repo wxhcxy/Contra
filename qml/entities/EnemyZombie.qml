@@ -5,6 +5,7 @@ Enemy{
     entityType: "zombie"
 
     id:_zombie
+    property alias mirrorX: squaby.mirrorX
     property bool bossCreateZombie: false
     //source:Qt.resolvedUrl("../../assets/img/enemyWalk.png")
     attackPower: 50
