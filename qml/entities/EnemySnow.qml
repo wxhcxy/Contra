@@ -18,17 +18,16 @@ Enemy{
 
     Timer{
         id:snowRotation
-        interval: 2
+        interval: 300
         running: true
         repeat: true
         onTriggered: {
-            if((Math.abs(player.x-_snow.x)>300)||(Math.abs(player.y-_snow.y)>200))
-            {
-                snowAttack.stop()
-            }
-            if((Math.abs(player.x-_snow.x)<=300)||(Math.abs(player.y-_snow.y)<=200))
+            if((Math.abs(player.x-_snow.x)<=300)&&(Math.abs(player.y-_snow.y)<=200))
             {
                 snowAttack.start()
+            }
+            else{
+                snowAttack.stop()
             }
         }
     }

@@ -39,19 +39,18 @@ Enemy{
 
     Timer{
         id:tankRotation
-        interval: 2
+        interval: 50
         running: true
         repeat: true
         onTriggered: {
             _tankGun.rotation = Math.atan2(player.y-_tank.y,player.x-_tank.x)*(180/Math.PI)
             //这个定时器跟踪玩家的移动，然后旋转坦克射击方向，坦克会动态跟踪人物的移动位置射击
-            if((Math.abs(player.x-_tank.x)>300)||(Math.abs(player.y-_tank.y)>200))
-            {
-                tankAttack.stop()
-            }
-            if((Math.abs(player.x-_tank.x)<=300)||(Math.abs(player.y-_tank.y)<=200))
+            if((Math.abs(player.x-_tank.x)<=300)&&(Math.abs(player.y-_tank.y)<=200))
             {
                 tankAttack.start()
+            }
+            else{
+                tankAttack.stop()
             }
         }
     }

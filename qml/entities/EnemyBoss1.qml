@@ -127,7 +127,7 @@ Enemy{
                  "y":350,
                  "width":55,
                  "height":25,
-                 "bossCreateZombie":true
+                 "bossCreateZombie":true,
              });
         }
     }

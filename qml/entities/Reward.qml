@@ -25,7 +25,5 @@ EntityBase {
         implicitHeight:_rewardEntityBase.height
         anchors.fill:parent
         bodyType: Body.Static
-
-
     }
 }

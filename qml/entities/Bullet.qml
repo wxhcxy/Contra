@@ -35,7 +35,7 @@ EntityBase{
     }
 
     onEntityDestroyed: {
-        //console.log("子弹被销毁")
+        console.log("子弹被销毁")
     }
 
     BoxCollider{

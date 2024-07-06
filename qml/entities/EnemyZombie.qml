@@ -41,10 +41,16 @@ Enemy{
         }
     }
 
+    onBossCreateZombieChanged: {
+        if(bossCreateZombie){
+            _zombieMove.start()
+        }
+    }
+
     Timer{
-        id:zombieMove
+        id:_zombieMove
         interval: 200
-        running: true
+        running: false
         repeat: true
         onTriggered: {
             if(bossCreateZombie){

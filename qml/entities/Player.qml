@@ -153,7 +153,7 @@ EntityBase {
         running: false
         repeat: false
         onTriggered: {
-            img.jumpTo("Idle")
+            //img.jumpTo("Idle")
             _playerSnow.visible = false
             _collider.bodyType = Body.Dynamic
             Ctrler.enablePlayerKeyboardInput()

@@ -43,35 +43,18 @@ EntityBase {
     }
 
     Timer{
-        id:_laserTime
-        interval: 2
+        id:_laserTimer
+        interval: 300
         running: true
         repeat: true
         onTriggered: {
             if((Math.abs(player.x-_laserEntityBase.x)>300)||(Math.abs(player.y-_laserEntityBase.y)>200))
             {
-                _laserTimer.stop()
+                _laserAnimation.stop()
             }
             if((Math.abs(player.x-_laserEntityBase.x)<=300)||(Math.abs(player.y-_laserEntityBase.y)<=200))
             {
-                _laserTimer.start()
-            }
-        }
-    }
-
-    Timer{
-        id:_laserTimer
-        interval: 300
-        repeat: true
-        onTriggered: {
-            _laserAnimation.start()
-            if((Math.abs(player.x-_laserEntityBase.x)>300)||(Math.abs(player.y-_laserEntityBase.y)>200))
-            {
-                _laserTime.start()
-            }
-            if((Math.abs(player.x-_laserEntityBase.x)<=300)||(Math.abs(player.y-_laserEntityBase.y)<=200))
-            {
-                _laserTime.stop()
+                _laserAnimation.start()
             }
         }
     }

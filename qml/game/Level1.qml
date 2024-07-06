@@ -58,7 +58,6 @@ Item {
 
     EnemyZombie{x:360; y:220; width: 55; height: 25}
     EnemyZombie{x:660; y:350; width: 55; height: 25}
-    EnemyZombie{x:850; y:350; width: 55; height: 25}
     EnemyZombie{x:1160; y:220; width: 55; height: 25}
 
     EnemySnow{x:880; y:330}
