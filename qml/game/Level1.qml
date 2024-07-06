@@ -40,6 +40,8 @@ Item {
     Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
 
 
+
+
     EnemyIronPlate{x:370; y:250; width: 60; height: 150}
     EnemyIronPlate{x:650; y:0; width: 60; height: 250}
     EnemyIronPlate{x:850; y:0; width: 60; height: 280}
@@ -59,6 +61,10 @@ Item {
     EnemyZombie{x:850; y:350; width: 55; height: 25}
     EnemyZombie{x:1160; y:220; width: 55; height: 25}
 
+    EnemySnow{x:880; y:330}
+    EnemySnow{x:1580; y:330}
+    EnemySnow{x:1880; y:130}
+
     EnemyTank{x:500; y:160}
     EnemyTank{x:500; y:350}
     EnemyTank{x:850; y:260}
@@ -73,10 +79,7 @@ Item {
     EnemyBird {x: 1500; y: 200}
     EnemyBird {x: 1100; y: 70}
 
-
-
     EnemyBoss1{x:2120; y:140}
-
 
 
     Reward{x:280; y:350; width: 30; height: 30; treasureMode: 1}

@@ -25,6 +25,9 @@ function entityBeginCrash(otherEntity,contactNormal) {
     else if(this.entityType === "enemyBullet"){//检测该实体是否为子弹
         bulletEnemyBeginCrash(this,collidedEntity,contactNormal)    //敌人子弹打到玩家，敌人子弹会销毁
     }
+    else if(this.entityType === "snowBullet"){//检测该实体是否为雪花
+        bulletEnemyBeginCrash(this,collidedEntity,contactNormal)
+    }
     if(otherEntityId==="reward"&&this.entityId==="player") //只有玩家碰到宝箱，宝箱才会销毁
     {
         if(collidedEntity.treasureMode===1) player.attackMode=1 //捡到第一种宝箱，更换玩家攻击模式
@@ -49,6 +52,15 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     else if(otherEntity.entityType === "enemyBullet"){//检测该otherEntity是否为enemy
         bloodCalculate(currentEntity,otherEntity,contactNormal) //敌人子弹打中玩家，计算玩家血量
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
+    }
+    else if(otherEntity.entityType === "snowBullet"){
+        player.playerSnow.visible = true
+        img.jumpTo("Idle")
+        player.fire = false
+        player.collider.bodyType = Body.Static
+        disablePlayerKeyboardInput() //雪花打到玩家，玩家被冰冻，键盘失效
+        bloodCalculate(currentEntity,otherEntity,contactNormal)
+        player.pauseSnowPlayer.start()
     }
     else if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
@@ -182,6 +194,32 @@ function playerInputReleased(input){
        }
     }
 
+}
+
+// 玩家被雪花打到会被冰冻1秒，此时键盘没有效果
+function disablePlayerKeyboardInput() {
+    player.controller.inputActionsToKeyCode = {
+        "up": Qt.Key_unknown,
+        "down": Qt.Key_unknown,
+        "left": Qt.Key_unknown,
+        "right": Qt.Key_unknown,
+        "fire": Qt.Key_unknown,
+        "jump": Qt.Key_unknown,
+        "squat": Qt.Key_unknown
+    };
+}
+
+// 冰冻1秒后玩家恢复
+function enablePlayerKeyboardInput() {
+    player.controller.inputActionsToKeyCode = {
+        "up": Qt.Key_W,
+        "down": Qt.Key_S,
+        "left": Qt.Key_A,
+        "right": Qt.Key_D,
+        "fire": Qt.Key_J,
+        "jump": Qt.Key_K,
+        "squat": Qt.Key_Shift
+    };
 }
 
 

@@ -10,6 +10,8 @@ EntityBase {
     property alias controller: _controller
     property alias img : _player
     property alias collider : _collider
+    property alias pauseSnowPlayer: _pauseSnowPlayer
+    property alias playerSnow: _playerSnow
     property var direction: Qt.point(1, -1) // 初始面向方向为向右,向上
     property int blood: 3000
     property int attackMode: 0 //玩家武器攻击模式，如发射多颗子弹
@@ -86,6 +88,15 @@ EntityBase {
 
     }
 
+    Image {
+        id: _playerSnow
+        visible: false
+        width: 30
+        height: 30
+        anchors.centerIn: parent
+        source: Qt.resolvedUrl("../../assets/img/bullet/snowbullet.png")
+    }
+
 
     BoxCollider{
         id:_collider
@@ -134,6 +145,19 @@ EntityBase {
             }
         }
 
+    }
+
+    Timer{
+        id:_pauseSnowPlayer
+        interval: 1000
+        running: false
+        repeat: false
+        onTriggered: {
+            img.jumpTo("Idle")
+            _playerSnow.visible = false
+            _collider.bodyType = Body.Dynamic
+            Ctrler.enablePlayerKeyboardInput()
+        }
     }
 
 }
