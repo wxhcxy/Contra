@@ -13,4 +13,11 @@ Bullet{
     boxCollider.fixture.onBeginContact: (other, contactNormal)=>{   //子弹发生碰撞后触发的效果
                                             Ctrler.entityBeginCrash(other,contactNormal)
                                         }
+
+    Connections{
+        target: gameScene
+        function onGameOver(){
+            _enemyBullet.destroy()
+        }
+    }
 }

@@ -39,6 +39,7 @@ Item {
     //左侧墙壁阻止越界
     Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
 
+
     EnemyIronPlate{x:370; y:250; width: 60; height: 150}
     EnemyIronPlate{x:650; y:0; width: 60; height: 250}
     EnemyIronPlate{x:850; y:0; width: 60; height: 280}
@@ -71,6 +72,7 @@ Item {
     EnemyBird {x: 340; y: 100}
     EnemyBird {x: 1500; y: 200}
     EnemyBird {x: 1100; y: 70}
+
 
 
     EnemyBoss1{x:2120; y:140}
