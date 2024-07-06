@@ -28,6 +28,9 @@ function entityBeginCrash(otherEntity,contactNormal) {
     else if(this.entityType === "snowBullet"){//检测该实体是否为雪花
         bulletEnemyBeginCrash(this,collidedEntity,contactNormal)
     }
+    else if(this.entityId === "boss"){
+            bossBeginCrash(this,collidedEntity,contactNormal)
+        }
     if(otherEntityId==="reward"&&this.entityId==="player") //只有玩家碰到宝箱，宝箱才会销毁
     {
         if(collidedEntity.treasureMode===1) player.attackMode=1 //捡到第一种宝箱，更换玩家攻击模式
@@ -67,6 +70,11 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
         if(otherEntity.entityType === "ground2"){
             player.jump =false
         }
+    }else if(otherEntity.entityType === "portal"){
+        player.x = otherEntity.portX
+        player.y = otherEntity.portY
+    }else if(otherEntity.entityType === "boss2"){
+        bloodCalculate(currentEntity,otherEntity,contactNormal)
     }
 
 }
@@ -370,6 +378,34 @@ function bulletPlayerBeginCrash(currentEntity,otherEntity,contactNormal){
     else if(otherEntity.entityId === "ground"){
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
 
+    }else if(otherEntity.entityId === "boss"){
+        otherEntity.blood -= currentEntity.attackPower
+        currentEntity.destroy()
+    }
+}
+
+function bossBeginCrash(currentEntity,otherEntity,contactNormal){
+    if(otherEntity.entityId === "player"){
+        if(currentEntity.entityType === "boss2"){
+            _boss2.state = "Attack"
+            boss2Sprite.jumpTo("Attack")
+            player.blood-=_boss2.attackPower
+        }
+    }else if(otherEntity.entityType === "playerBullet"){
+        _boss2.blood-=otherEntity.attackPower
+        if(_boss2.blood===0){
+            _boss2.destory()
+        }
+
+    }
+}
+
+function bossEndCrash(otherEntity,contactNormal){
+    if(otherEntity.entityId === "player"){
+        if(this.entityType === "boss2"){
+            _boss2.state = ""
+            _boss2.state = ""
+        }
     }
 }
 
@@ -424,4 +460,64 @@ function buyGoods(){
 
 
 }
+
+function boss2Actions(){
+        if(player.x>1400&&player.y>600){
+            boss2Sprite.visible = true
+            var runRate = Math.random(5);
+            var fireRate = Math.random(5);
+            var sfireRate = Math.random(5)
+            runRate >= fireRate ? _boss2.state = "Run" : _boss2.state = "Fire"
+
+            var dx = player.x-_boss2.x
+            var dy = player.y-_boss2.y
+            var distance = Math.sqrt(dx*dx+dy*dy)
+
+            var shootPosition = Qt.point(_boss2.x + _boss2.width/2 , _boss2.y + _boss2.height / 2 -20)
+            var bulletUrl = Qt.resolvedUrl("./entities/BulletEnemy.qml")
+            var bulletsX = 300
+            var bulletsY = 0
+            var shootDirection = Qt.point(bulletsX,bulletsY)
+
+            if(dx>0){
+                boss2Sprite.mirrorX = false
+
+            }
+            else if(dx<0){
+                boss2Sprite.mirrorX = true
+                shootDirection = Qt.point(-bulletsX,bulletsY)
+            }
+
+            if(distance>1 ){
+                if(_boss2.state === "Run"){
+                boss2Sprite.jumpTo("Run")
+                var angle = Math.atan2(dy,dx)
+                var speed = 50
+                _boss2.x += Math.cos(angle) * speed
+                }
+            }
+
+
+            if(_boss2.state === "Fire" ){
+
+                if(sfireRate > fireRate){
+                     boss2Sprite.jumpTo("SquatAndFire")
+                     _boss2.state = "SquatAndFire"
+                     shootPosition = Qt.point(_boss2.x + _boss2.width/2 , _boss2.y + _boss2.height / 2-10)
+                }else{
+                    boss2Sprite.jumpTo("Fire")
+                    _boss2.state = "Fire"
+                }
+                shootBullet(bulletUrl, shootPosition, shootDirection, 200)
+            }
+
+
+        }else{
+            boss2Sprite.visible = false
+        }
+
+
+}
+
+
 

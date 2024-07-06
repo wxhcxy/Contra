@@ -61,8 +61,8 @@ Item {
     Ground{x:1024;y:256;size:2;path:"ground2";entityType: "ground2"}
     Ground{x:1212;y:224;size:1;path:"corner12";entityType: "ground2"}
 
-    EnemyZombie{x:1244;y:200;width: 55;height: 55}
-    EnemyZombie{x:1300;y:200;width: 55;height: 55}
+    //EnemyZombie{x:1244;y:200;width: 55;height: 55}
+    //EnemyZombie{x:1300;y:200;width: 55;height: 55}
     Ground{x:1244;y:224;size:3;path:"ground11";entityType: "ground2"}
     Ground{x:1340;y:224;size:1;path:"corner11";entityType: "ground2"}
     Ground{x:1244;y:256;size:3;path:"solid"}
@@ -71,7 +71,7 @@ Item {
     Ground{x:1244;y:288;size:3;path:"ground13"}
     Ground{x:1340;y:288;size:1;path:"corner14"}
     Ground{x:1340;y:256;size:1;path:"stone"}
-
+    Portal{x:1310;y:170;portX: 1200;portY: 750}
     //中间层
     //左
     Npc{x:50;y:768-npc.height}
@@ -136,7 +136,12 @@ Item {
     Laser{x:1080; y:724; z:2; elongateHeight:90}
     EnemyIronPlate{x:1150;y:730;width: 32;height: 85}
 
+    Reward{x:1200; y:790; width: 30; height: 30; treasureMode: 1}
 
+    Reward{x:1250; y:790; width: 30; height: 30; treasureMode: 1}
+
+    Portal{x:1350;y:770;portX: 1250;portY: 180}
+    EnemyBoss2{x:1700;y:800}
     Ground{x:718;y:814;size:23;path:"ground11";entityType: "ground2"}
 
     Ground{x:1474;y:510;size:15;path:"stone";rotation: 90}
