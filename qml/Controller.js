@@ -40,6 +40,7 @@ function entityBeginCrash(otherEntity,contactNormal) {
 //otherEntity为发生碰撞的实体
 function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){//检测该otherEntity是否为enemy
+        bloodCalculate(currentEntity,otherEntity,contactNormal)
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     else if(otherEntity.entityId === "laser"){//检测该otherEntity是否为ground
@@ -201,16 +202,16 @@ function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
 function playerActions(status){
    if(player.fire){
        var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
-       var shootPosition = Qt.point(player.x + player.width+10 , player.y + player.height / 2 -6)
+       var shootPosition = Qt.point(player.x + player.width/2 , player.y + player.height / 2 -10)
        var bulletsX = 300
        var bulletsY = 0
 
        if(player.shootRight){bulletsX=300; bulletsY=0}
        if(player.shootLeft){bulletsX=-300; bulletsY=0}
-       if(player.shootRight&&player.shootUp){ bulletsX=300; bulletsY=-300}
-       if(player.shootRight&&player.shootDown){ bulletsX=300; bulletsY=300}
-       if(player.shootLeft&&player.shootUp){bulletsX=-300; bulletsY=-300}
-       if(player.shootLeft&&player.shootDown){bulletsX=-300; bulletsY=300}
+       if(player.shootRight&&player.shootUp){ bulletsX=200; bulletsY=-200}
+       if(player.shootRight&&player.shootDown){ bulletsX=200; bulletsY=200}
+       if(player.shootLeft&&player.shootUp){bulletsX=-200; bulletsY=-200}
+       if(player.shootLeft&&player.shootDown){bulletsX=-200; bulletsY=200}
        var shootDirection = Qt.point(bulletsX,bulletsY)
        var bullets = [
                    {velocity: Qt.point(bulletsX,bulletsY),attackPower: 30},

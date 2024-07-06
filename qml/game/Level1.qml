@@ -39,6 +39,8 @@ Item {
     //左侧墙壁阻止越界
     Ground { x:0; y:0; size: 19; rotation: 90;path:"stone"}
 
+    EnemyIronPlate{x:370; y:250; width: 60; height: 150}
+
     Laser{x:410; y:0; z:2}
     Laser{x:300; y:390; z:2; elongateHeight:100; rotation:180}
     Laser{x:880; y:390; z:2; elongateHeight:70; rotation:180}
