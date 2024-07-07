@@ -392,10 +392,7 @@ function bossBeginCrash(currentEntity,otherEntity,contactNormal){
             player.blood-=_boss2.attackPower
         }
     }else if(otherEntity.entityType === "playerBullet"){
-        _boss2.blood-=otherEntity.attackPower
-        if(_boss2.blood===0){
-            _boss2.destory()
-        }
+        bloodCalculate(currentEntity,otherEntity,contactNormal)
 
     }
 }

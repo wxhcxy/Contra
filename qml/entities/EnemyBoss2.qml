@@ -116,17 +116,7 @@ EntityBase {
             Ctrler.boss2Actions()
         }
     }
-    Timer{
-        id:_boss2Life
-        interval: 200
-        running: true
-        repeat: true
-        onTriggered: {
-            if(blood<=0){
-                _boss2.destroy()
-            }
-        }
-    }
+
 
 
 }
