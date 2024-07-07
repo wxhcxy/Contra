@@ -121,6 +121,7 @@ Item {
         camera.limitBottom = 400
         player.x = 100
         player.y = 250
+        player.money = 400
     }
 
 }

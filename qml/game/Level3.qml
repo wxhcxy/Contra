@@ -98,6 +98,7 @@ Item {
 
     Component.onCompleted: {
         bgm3.play()
+        player.money = 400
         camera.limitBottom = 12000
         camera.limitRight = 1100
     }

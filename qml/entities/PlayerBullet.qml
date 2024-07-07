@@ -4,7 +4,6 @@ import "../Controller.js" as Ctrler
 
 Bullet{
     id:_playerBullet
-
     entityType: "playerBullet"
     //width: 70
     //height: 70

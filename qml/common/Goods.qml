@@ -20,7 +20,7 @@ Column{
     }
     Text{
         id:_text
-        text:type+" + " +numValue+"\n"+"$: "+cost
+        text:type +"\n"+"$: "+cost
         font.pixelSize: 5
         color:"green"
 

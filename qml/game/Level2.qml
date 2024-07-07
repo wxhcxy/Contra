@@ -184,6 +184,7 @@ Item {
 
     Component.onCompleted: {
         bgm2.play()
+        player.money = 400
         camera.limitLeft = 0
         camera.limitTop = 0
         camera.limitBottom = 1024

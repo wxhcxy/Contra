@@ -16,7 +16,7 @@ EntityBase {
     property int originalBlood: 3000
     property int blood: 3000
     property int attackMode: 0 //玩家武器攻击模式，如发射多颗子弹
-    property int money : 700
+    property int money : 400
     signal bloodChange(int blood)
 
     //玩家子弹射击方向判断

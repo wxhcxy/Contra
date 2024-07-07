@@ -119,6 +119,10 @@ SceneBase {
                 }
             }
         }
+        Text{
+            id:money
+            text: qsTr("$:"+player.money)
+        }
     }
 
     onActiveLevelFileNameChanged: {

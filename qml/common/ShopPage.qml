@@ -7,56 +7,17 @@ Rectangle {
     Grid{
         id:_grid
         rows:3
-        columns: 3
+        columns:3
         Goods{
-            type:"life"
-            numValue: 100
-            cost:200
-        }
-        Goods{
-            type:"speed"
-            numValue: 1
-            cost:200
-        }
-        Goods{
-            type:"life"
-            numValue: 100
-            cost:200
-        }
-        Goods{
-            type:"life"
-            numValue: 100
-            cost:200
-        }
-        Goods{
-            type:"life"
-            numValue: 100
-            cost:200
-        }
-        Goods{
-            type:"life"
-            numValue: 100
-            cost:200
-        }
-        Goods{
-            type:"speed"
-            numValue: 1
-            cost:200
-        }
-        Goods{
-            type:"speed"
-            numValue: 1
-            cost:200
-        }
-        Goods{
-            type:"speed"
-            numValue: 1
-            cost:200
-        }
+            type:"reward1"
 
+            cost:100
+        }
+        Goods{
+            type:"reward2"
 
-
-
+            cost:200
+        }
 
     }
 }

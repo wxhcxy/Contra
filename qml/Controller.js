@@ -438,12 +438,11 @@ function buyGoods(){
    if(player.money >= this.cost){
        player.money -= this.cost
    switch(this.type){
-   case "life":
-       player.blood += this.numValue
-       console.log(player.blood)
+   case "reward1":
+       player.attackMode = 1
        break;
-   case "speed":
-       player.collider.linearDamping -=this.numValue
+   case "reward2":
+       player.attackMode = 2
        break;
     default:
         break;
