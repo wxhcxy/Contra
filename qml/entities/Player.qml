@@ -13,6 +13,7 @@ EntityBase {
     property alias pauseSnowPlayer: _pauseSnowPlayer
     property alias playerSnow: _playerSnow
     property var direction: Qt.point(1, -1) // 初始面向方向为向右,向上
+    property int originalBlood: 3000
     property int blood: 3000
     property int attackMode: 0 //玩家武器攻击模式，如发射多颗子弹
     property int money : 700

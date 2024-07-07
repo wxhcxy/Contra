@@ -56,6 +56,10 @@ SceneBase {
           id: loader
           source: activeLevelFileName ? "../game/" + activeLevelFileName : ""
           onLoaded: {
+              gameScene.gameOverRectangle.visible = false
+              gameScene.gameOverRectangle.winVisible = false
+              gameScene.gameOverRectangle.gameoverVisible = false
+              gameScene.gameOverRectangle.pauseVisible = false
               //console.log(bg.sourceImage)
           }
       }
@@ -65,7 +69,7 @@ SceneBase {
         id: player
         x: 100; y:250
         onBloodChange: {
-            bloodProgress.value = player.blood/1000
+            bloodProgress.value = player.blood/3000
             //console.log(bloodProgress.value)
         }
       }
@@ -104,6 +108,13 @@ SceneBase {
                     implicitHeight: bloodProgress.height
                     radius: 20
                     color: "gray"
+                }
+                onValueChanged: {
+                    if(value <= 0){
+                    gameOverRectangle.gameoverVisible = true
+                    gameOverRectangle.visible = true
+                    rectangleTimer.start()
+                    }
                 }
             }
         }
@@ -160,6 +171,9 @@ SceneBase {
 
     Rectangle {
         id: gameOverRectangle
+        property alias pauseVisible: pauseText.visible
+        property alias winVisible: winText.visible
+        property alias gameoverVisible: gameoverText.visible
         x: parent.width/2 - width/2
         y: parent.height/2 -height/2
         width: parent.width*0.7
@@ -169,13 +183,33 @@ SceneBase {
         color: "#1a1c17"
       Column{
           anchors.centerIn: parent
-        Text {
-            x: parent.width/2 - width/2
-            y: parent.height/2 -height
-            text: qsTr("Game Over!")
-            font.family: fontLoader.name
-            font.pixelSize: 76
-        }
+          Text {
+              id: pauseText
+              visible: false
+              x: parent.width/2 - width/2
+              y: parent.height/2 -height
+              text: qsTr("Exit")
+              font.family: fontLoader.name
+              font.pixelSize: 76
+          }
+          Text {
+              id: winText
+              visible: false
+              x: parent.width/2 - width/2
+              y: parent.height/2 -height
+              text: qsTr("Win")
+              font.family: fontLoader.name
+              font.pixelSize: 76
+          }
+          Text {
+              id: gameoverText
+              visible: false
+              x: parent.width/2 - width/2
+              y: parent.height/2 -height
+              text: qsTr("Game Over")
+              font.family: fontLoader.name
+              font.pixelSize: 76
+          }
         Text {
             x: parent.width/2 - width/2
             text: qsTr("Next Level?")
@@ -184,11 +218,13 @@ SceneBase {
         }
         Row{
             x: parent.width/2 - width/2
-            y: parent.height/2 -height
+            // y: parent.height/2 -height
             spacing: 40
           Button {
+              id: yesBtn
               width: 40
               height: 30
+              property bool isPressed: false
               Text {
                   anchors.centerIn: parent
                   text: qsTr("YES")
@@ -202,14 +238,26 @@ SceneBase {
               onClicked: {
                   player.x = 100
                   player.y = 255
-                  player.blood = 1000
-                  nextLevel(++gameScene.background)
-                  gameOverRectangle.visible = false
+                  player.blood = player.originalBlood
+                  isPressed = true
+                  if(gameScene.background < 3){
+                      nextLevel(++gameScene.background)
+                     // gameOverRectangle.visible = false
+                  } else{
+                      gameWindow.state = "menu"
+                      hintPopup.open()
+                      hintTimer.start()
+                  }
+                  gameOverRectangle.winVisible = false
+                  gameOverRectangle.gameoverVisible = false
+                  gameOverRectangle.pauseVisible = false
               }
           }
           Button {
+              id: noBtn
               width: 40
               height: 30
+              property bool isPressed: false
               Text {
                   anchors.centerIn: parent
                   text: qsTr("NO")
@@ -224,12 +272,16 @@ SceneBase {
               onClicked: {
                   gameWindow.state = "menu"
                   gameOverRectangle.visible = false
+                  gameOverRectangle.winVisible = false
+                  gameOverRectangle.gameoverVisible = false
+                  gameOverRectangle.pauseVisible = false
                   leftCameraTimer.stop()
                   //tmpLeft = 0
                   camera.limitLeft = 0
                   player.x = 100
                   player.y = 255
-                  player.blood = 1000
+                  isPressed = true
+                  player.blood = player.originalBlood
                   activeLevelFileName=""
               }
           }
@@ -241,18 +293,51 @@ SceneBase {
     Timer {
         id: rectangleTimer
         interval: 100
-        repeat: false
-        onTriggered: gameOverRectangle.visible = true
+        repeat: true
+        onTriggered: {
+            if(noBtn.isPressed || yesBtn.isPressed) {
+            gameOverRectangle.visible = false
+            gameOverRectangle.winVisible = false
+            gameOverRectangle.gameoverVisible = false
+            gameOverRectangle.pauseVisible = false
+            noBtn.isPressed = false
+            yesBtn.isPressed = false
+           }
+        }
     }
 
     onGameOver: {
+        gameOverRectangle.winVisible = true
         gameOverRectangle.visible = true
     }
 
     Keys.onPressed: (event)=> {
         if(event.key === Qt.Key_Space){
+           gameOverRectangle.pauseVisible = true
            gameOverRectangle.visible = true
-        //   rectangleTimer.start()
+           rectangleTimer.start()
+        }
+    }
+
+    Popup {
+        id: hintPopup
+        anchors.centerIn: parent
+        background: Rectangle {
+            opacity: 0.8
+            color: "#1a1c17"
+        }
+        Text {
+            color: "black"
+            text: qsTr("That's the last Level")
+            font.family: fontLoader.name
+            font.pixelSize: 50
+        }
+
+        Timer {
+            id :hintTimer
+            interval: 1500   // hintPopup显示1.5秒
+            repeat: false
+            onTriggered: hintPopup.close()
         }
     }
 

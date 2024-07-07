@@ -31,7 +31,8 @@ FontLoader {
   SelectLevelScene {
       id: selectLevelScene
       onLevelPressed: selectedLevel => {
-                          gameScene.setLevel(selectedLevel)
+                          // gameScene.setLevel(selectedLevel)
+                          gameScene.loader.source = Qt.resolvedUrl("game/Level" + gameScene.background + ".qml")
                           gameWindow.state = "game"
                       }
       onBackButtonPressed: gameWindow.state = "menu"
@@ -45,11 +46,11 @@ FontLoader {
     sceneAlignmentY: "top"
 
     onNextLevel: background => {
-                     gameOverRectangle.visible = false
+                     //gameOverRectangle.visible = false
                      loader.source = Qt.resolvedUrl("game/Level" + background + ".qml")
                      gameScene.setLevel("Level" + background + ".qml")
                      // bgLoader.source = Qt.resolvedUrl("game/Background.qml")
-                     gameWindow.state = "game"
+                    // gameWindow.state = "game"
     }
   }
 

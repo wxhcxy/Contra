@@ -69,7 +69,7 @@ SceneBase {
                   onClicked: {
                     var levelFile = "Level"+level+".qml";
                     selectLevelScene.backgroundIndex = level;
-                    gameScene.background = selectLevelScene.backgroundIndex;
+                    gameScene.background = level;
                     //console.log(gameScene.background)
                     levelFile = "Level"+level+".qml";
                     levelPressed(levelFile);
