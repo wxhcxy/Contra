@@ -36,7 +36,7 @@ Item {
     Ground { x:2010; y:0; size: 4;path:"stone"; rotation: 90}
     /*悬空道路*/
 
-    Ground {id:rightWall; x:Math.abs(container.x-646) ; y:0; size: 20;path:"stone"; rotation: 90; opacity: 1}
+    Ground {id:rightWall; x:Math.abs(container.x-646) ; y:0; size: 20;path:"stone"; rotation: 90; opacity: 0}
     Ground {id:leftWall; x:Math.abs(container.x-2) ; y:0; size: 19;path:"stone"; rotation: 90; opacity: 0}
     Ground {x:2220 ; y:0; size: 18;path:"stone"; rotation: 90; opacity: 0}
 
