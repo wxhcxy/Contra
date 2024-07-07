@@ -8,6 +8,12 @@ Item {
 
     width: 10 * gameScene.gridSize
 
+    BackgroundMusic{
+        id:bgm1
+        source: Qt.resolvedUrl("../../assets/audio/bgm1.mp3")
+        autoPlay: false
+        volume: 0.3
+    }
 
     //底部地面
     Ground { x:0; y:370; size: 200;path:"stone";entityType: "ground2"}
@@ -109,6 +115,8 @@ Item {
     }
 
     Component.onCompleted: {
+        bgm1.play()
+        player.attackMode = 0
         camera.limitRight = 2200
         camera.limitBottom = 400
         player.x = 100

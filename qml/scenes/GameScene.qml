@@ -56,6 +56,7 @@ SceneBase {
           id: loader
           source: activeLevelFileName ? "../game/" + activeLevelFileName : ""
           onLoaded: {
+              bloodProgress.value = 1
               gameScene.gameOverRectangle.visible = false
               gameScene.gameOverRectangle.winVisible = false
               gameScene.gameOverRectangle.gameoverVisible = false

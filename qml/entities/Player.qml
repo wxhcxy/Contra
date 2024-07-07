@@ -157,6 +157,8 @@ EntityBase {
         repeat: false
         onTriggered: {
             img.jumpTo("Idle")
+            shootUp = false
+            shootDown = false
             _playerSnow.visible = false
             Ctrler.enablePlayerKeyboardInput()
         }
