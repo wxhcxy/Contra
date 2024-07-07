@@ -153,6 +153,12 @@ Item {
     Ground{x:0;y:1024;size:64;path:"ground2"}
 
 
+    BackgroundMusic{
+        id:bgm2
+        source: Qt.resolvedUrl("../../assets/audio/bgm1.mp3")
+        autoPlay: false
+        volume: 0.3
+    }
 
     BackgroundMusic{
         id:tankExplosion
@@ -177,6 +183,7 @@ Item {
     }
 
     Component.onCompleted: {
+        bgm2.play()
         camera.limitLeft = 0
         camera.limitTop = 0
         camera.limitBottom = 1024

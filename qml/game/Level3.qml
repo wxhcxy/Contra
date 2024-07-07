@@ -78,6 +78,13 @@ Item {
     }
 
     BackgroundMusic{
+        id:bgm3
+        source: Qt.resolvedUrl("../../assets/audio/bgm1.mp3")
+        autoPlay: false
+        volume: 0.3
+    }
+
+    BackgroundMusic{
         id:tankExplosion
         source: Qt.resolvedUrl("../../assets/audio/tankExp.wav")
         loops: 1
@@ -90,6 +97,7 @@ Item {
     source:Qt.resolvedUrl("../../assets/img/reward/multibullet.png")}
 
     Component.onCompleted: {
+        bgm3.play()
         camera.limitBottom = 12000
         camera.limitRight = 1100
     }
