@@ -117,6 +117,8 @@ EntityBase {
         }
     }
 
-
+    onEntityDestroyed: {
+            gameOver()
+        }
 
 }
