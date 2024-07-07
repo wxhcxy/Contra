@@ -12,6 +12,8 @@ EntityBase {
     property alias collider : _collider
     property alias pauseSnowPlayer: _pauseSnowPlayer
     property alias playerSnow: _playerSnow
+    property alias playerSpeed: _collider.linearDamping
+    property alias restoreSpeed: speedTimer
     property var direction: Qt.point(1, -1) // 初始面向方向为向右,向上
     property int originalBlood: 3000
     property int blood: 3000
@@ -161,6 +163,17 @@ EntityBase {
             shootDown = false
             _playerSnow.visible = false
             Ctrler.enablePlayerKeyboardInput()
+        }
+    }
+
+    Timer {
+        id: speedTimer
+        interval: 4000
+        repeat: true
+        onTriggered: {
+            if(_collider.linearDamping > 10)
+                _collider.linearDamping -= 5
+            console.log("player speed is " + _collider.linearDamping)
         }
     }
 

@@ -28,6 +28,9 @@ function entityBeginCrash(otherEntity,contactNormal) {
     else if(this.entityType === "snowBullet"){//检测该实体是否为雪花
         bulletEnemyBeginCrash(this,collidedEntity,contactNormal)
     }
+    else if(this.entityType === "bossBullet3"){//检测该实体是否为boss3子弹
+            bulletEnemyBeginCrash(this,collidedEntity,contactNormal)
+    }
     else if(this.entityId === "boss"){
             bossBeginCrash(this,collidedEntity,contactNormal)
         }
@@ -65,6 +68,14 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
         bloodCalculate(currentEntity,otherEntity,contactNormal)
         player.pauseSnowPlayer.start()
     }
+    else if(otherEntity.entityType === "bossBullet3"){
+            if(player.playerSpeed < 40){
+                player.playerSpeed += 5   // 玩家减速
+            }
+            console.log("player speed is " + player.playerSpeed)
+            bloodCalculate(currentEntity,otherEntity,contactNormal)
+            player.restoreSpeed.start()
+        }
     else if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
         if(otherEntity.entityType === "ground2"){

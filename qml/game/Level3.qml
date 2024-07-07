@@ -40,9 +40,24 @@ Item {
 
     Ground { x:500; y:1150; height:10; width: 262; path: "Level3_mid3";entityType: "ground2"}
     Ground{ x:700; y:1300; height:10; width: 500; path:"Level3_left2";entityType: "ground2"}
+
+    // 楼梯
+    Ground { x:700; y:1300; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:300; y:1324; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:400; y:1348; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    //Ground { x:8; y:672; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:500; y:1360; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:600; y:1382; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:700; y:1304; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:700; y:1400; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    Ground { x:750; y:1450; height:24; width: 48; path: "ground3";entityType: "ground2"}
+    //Ground { x:200; y:826; height:24; width: 48; path: "ground3";entityType: "ground2"}
+
     Ground { x:480; y:1550; height:10; width: 470; path:"Level3_mid2";entityType: "ground2"}
 
     // 敌人
+    //EnemyBoss3{x:100; y:300}
+    //Reward{x:10; y:375; width: 30; height: 30; treasureMode: 2;source:Qt.resolvedUrl("../../assets/img/reward/multibullet.png")}
     EnemyZombie{x: 120; y: 600; width: 55; height: 25}
     EnemyZombie{x: 350; y: 870; width: 55; height: 25}
     EnemyZombie{x: 400; y: 870; width: 55; height: 25}
@@ -61,7 +76,7 @@ Item {
     EnemyTank{x: 250; y: 870}
     EnemyTank{x: 300; y: 1020}
     EnemyTank{x: 580; y: 1120}
-    EnemyBoss1{x:1005; y:1030}
+    EnemyBoss3{x:805; y:1250; originalX:1105; originalY:1250;}
 
     GameAnimatedSprite{
         id:squaby
@@ -98,7 +113,6 @@ Item {
 
     Component.onCompleted: {
         bgm3.play()
-        player.money = 400
         camera.limitBottom = 12000
         camera.limitRight = 1100
     }
