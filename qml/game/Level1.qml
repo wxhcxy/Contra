@@ -63,7 +63,7 @@ Item {
 
 
     EnemyZombie{x:360; y:220; width: 55; height: 25}
-    EnemyZombie{x:660; y:350; width: 55; height: 25}
+    EnemyZombie{x:660; y:340; width: 55; height: 25}
     EnemyZombie{x:1160; y:220; width: 55; height: 25}
 
     EnemySnow{x:880; y:330}
@@ -71,12 +71,12 @@ Item {
     EnemySnow{x:1880; y:130}
 
     EnemyTank{x:500; y:160}
-    EnemyTank{x:500; y:350}
+    EnemyTank{x:500; y:330}
     EnemyTank{x:850; y:260}
-    EnemyTank{x:1060; y:350}
+    EnemyTank{x:1060; y:330}
     EnemyTank{x:1260; y:-8}
     EnemyTank{x:1350; y:150}
-    EnemyTank{x:1400; y:350}
+    EnemyTank{x:1400; y:330}
     EnemyTank{x:2030; y:50}
     EnemyTank{x:2130; y:50}
 

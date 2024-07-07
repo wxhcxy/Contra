@@ -15,7 +15,6 @@ function entityBeginCrash(otherEntity,contactNormal) {
     else if(this.entityId === "player"){ //检测该实体是否为玩家
         playerBeginCrash(this,collidedEntity,contactNormal)
     }
-    //console.log("this.entityId: "+this.entityId)
     else if(this.entityId === "enemy"){ //检测该实体是否为敌人
         enemyBeginCrash(this,collidedEntity,contactNormal)
     }
@@ -50,14 +49,12 @@ function entityBeginCrash(otherEntity,contactNormal) {
 function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     if(otherEntity.entityId === "enemy"){//检测该otherEntity是否为enemy
         bloodCalculate(currentEntity,otherEntity,contactNormal)
-        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     else if(otherEntity.entityId === "laser"){//检测该otherEntity是否为ground
         bloodCalculate(currentEntity,otherEntity,contactNormal)
     }
     else if(otherEntity.entityType === "enemyBullet"){//检测该otherEntity是否为enemy
         bloodCalculate(currentEntity,otherEntity,contactNormal) //敌人子弹打中玩家，计算玩家血量
-        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     else if(otherEntity.entityType === "snowBullet"){
         player.playerSnow.visible = true
@@ -70,14 +67,12 @@ function playerBeginCrash(currentEntity,otherEntity,contactNormal){
     }
     else if(otherEntity.entityType === "bossBullet3"){
             if(player.playerSpeed < 40){
-                player.playerSpeed += 5   // 玩家减速
+                player.playerSpeed += 2   // 玩家减速
             }
-            console.log("player speed is " + player.playerSpeed)
             bloodCalculate(currentEntity,otherEntity,contactNormal)
             player.restoreSpeed.start()
         }
     else if(otherEntity.entityId === "ground"){//检测该otherEntity是否为ground
-        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
         if(otherEntity.entityType === "ground2"){
             player.jump =false
         }
@@ -97,7 +92,6 @@ function playerInputPressed(input){
         player.continuousShoot = true
         continuousShootTimer.start()
         player.fire = true
-        console.log("Player fire!")
         playerActions()
     }
     else if(input === "jump"){
@@ -259,7 +253,7 @@ function shootBullet(bulletUrl, shootPosition, velocity, attackPower){
 function playerActions(status){
    if(player.fire){
        var bulletUrl = Qt.resolvedUrl("./entities/PlayerBullet.qml")
-       var shootPosition = Qt.point(player.x + player.width/2 , player.y + player.height / 2 -10)
+       var shootPosition = Qt.point(player.x + player.width/2 , player.y + player.height / 2 -8)
        var bulletsX = 300
        var bulletsY = 0
 
@@ -357,20 +351,13 @@ function enemyBeginCrash(currentEntity,otherEntity,contactNormal){
         //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
     }
     else if(otherEntity.entityType === "playerBullet"){
-        console.log("playerBullet")
         bloodCalculate(currentEntity,otherEntity,contactNormal)
-        //console.log(currentEntity.entityType+" crash "+otherEntity.entityType)
-        //console.log(currentEntity.entityType+" hp--")
     }
 }
 
 //子弹碰撞到敌人时，计算伤害，生命值
 function bloodCalculate(currentEntity,otherEntity,contactNormal){
-    //console.log(currentEntity.entityId)
-    //console.log(otherEntity.attackPower) //子弹的攻击力
-    //console.log("this.blood: "+currentEntity.blood) //生命值
     currentEntity.blood -= otherEntity.attackPower //生命值计算，生命值减去当前子弹的攻击力
-    console.log(currentEntity.entityId+"  blood: "+currentEntity.blood)
     if(currentEntity.blood<=0&&currentEntity.entityId!=="player")
     {
         currentEntity.destroy() //生命值小于等于0,就销毁它

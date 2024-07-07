@@ -173,7 +173,6 @@ EntityBase {
         onTriggered: {
             if(_collider.linearDamping > 10)
                 _collider.linearDamping -= 5
-            console.log("player speed is " + _collider.linearDamping)
         }
     }
 
