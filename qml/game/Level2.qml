@@ -54,10 +54,10 @@ Item {
     Ground{x:992;y:192;size:1;path:"corner11";entityType: "ground2"}
     Ground{x:1024;y:224;size:3;path:"ground11";rotation: 90}
     Ground{x:672;y:224;size:3;path:"ground13";rotation:90}
-    EnemyZombie{x:672;y:170;width: 55;height: 55;mirrorX: true}
-    EnemyZombie{x:750;y:170;width: 55;height: 55;mirrorX: true}
-    EnemyZombie{x:800;y:170;width: 55;height: 55;mirrorX: true}
-    EnemyZombie{x:870;y:170;width: 55;height: 55;mirrorX: true}
+    EnemyZombie{x:672;y:160;width: 55;height: 55;mirrorX: true}
+    EnemyZombie{x:750;y:160;width: 55;height: 55;mirrorX: true}
+    EnemyZombie{x:800;y:160;width: 55;height: 55;mirrorX: true}
+    EnemyZombie{x:870;y:160;width: 55;height: 55;mirrorX: true}
     Ground{x:1024;y:256;size:2;path:"ground2";entityType: "ground2"}
     Ground{x:1212;y:224;size:1;path:"corner12";entityType: "ground2"}
 
@@ -130,9 +130,9 @@ Item {
     //中
     Ground{x:602;y:928;size:46;path:"stone";entityType: "ground2"}
     Laser{x:750; y:724; z:2; elongateHeight:90}
-    Laser{x:834; y:814; z:2; elongateHeight:90;rotation: 180}
+    Laser{x:834; y:834; z:2; elongateHeight:90;rotation: 180}
     Laser{x:898; y:724; z:2; elongateHeight:90}
-    Laser{x:1000; y:814; z:2; elongateHeight:90;rotation: 180}
+    Laser{x:1000; y:834; z:2; elongateHeight:90;rotation: 180}
     Laser{x:1080; y:724; z:2; elongateHeight:90}
     EnemyIronPlate{x:1150;y:730;width: 32;height: 85}
 
