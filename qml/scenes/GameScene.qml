@@ -113,7 +113,7 @@ SceneBase {
                     if(value <= 0){
                     gameOverRectangle.gameoverVisible = true
                     gameOverRectangle.visible = true
-                    rectangleTimer.start()
+                    //rectangleTimer.start()
                     }
                 }
             }
@@ -224,7 +224,7 @@ SceneBase {
               id: yesBtn
               width: 40
               height: 30
-              property bool isPressed: false
+             // property bool isPressed: false
               Text {
                   anchors.centerIn: parent
                   text: qsTr("YES")
@@ -239,7 +239,7 @@ SceneBase {
                   player.x = 100
                   player.y = 255
                   player.blood = player.originalBlood
-                  isPressed = true
+                  // isPressed = true
                   if(gameScene.background < 3){
                       nextLevel(++gameScene.background)
                      // gameOverRectangle.visible = false
@@ -248,16 +248,16 @@ SceneBase {
                       hintPopup.open()
                       hintTimer.start()
                   }
-                  gameOverRectangle.winVisible = false
-                  gameOverRectangle.gameoverVisible = false
-                  gameOverRectangle.pauseVisible = false
+//                  gameOverRectangle.winVisible = false
+//                  gameOverRectangle.gameoverVisible = false
+//                  gameOverRectangle.pauseVisible = false
               }
           }
           Button {
               id: noBtn
               width: 40
               height: 30
-              property bool isPressed: false
+              //property bool isPressed: false
               Text {
                   anchors.centerIn: parent
                   text: qsTr("NO")
@@ -271,16 +271,16 @@ SceneBase {
 
               onClicked: {
                   gameWindow.state = "menu"
-                  gameOverRectangle.visible = false
-                  gameOverRectangle.winVisible = false
-                  gameOverRectangle.gameoverVisible = false
-                  gameOverRectangle.pauseVisible = false
+//                  gameOverRectangle.visible = false
+//                  gameOverRectangle.winVisible = false
+//                  gameOverRectangle.gameoverVisible = false
+//                  gameOverRectangle.pauseVisible = false
                   leftCameraTimer.stop()
                   //tmpLeft = 0
                   camera.limitLeft = 0
                   player.x = 100
                   player.y = 255
-                  isPressed = true
+                  //isPressed = true
                   player.blood = player.originalBlood
                   activeLevelFileName=""
               }
@@ -290,21 +290,21 @@ SceneBase {
 
     }
 
-    Timer {
-        id: rectangleTimer
-        interval: 100
-        repeat: true
-        onTriggered: {
-            if(noBtn.isPressed || yesBtn.isPressed) {
-            gameOverRectangle.visible = false
-            gameOverRectangle.winVisible = false
-            gameOverRectangle.gameoverVisible = false
-            gameOverRectangle.pauseVisible = false
-            noBtn.isPressed = false
-            yesBtn.isPressed = false
-           }
-        }
-    }
+//    Timer {
+//        id: rectangleTimer
+//        interval: 100
+//        repeat: true
+//        onTriggered: {
+//            if(noBtn.isPressed || yesBtn.isPressed) {
+//            gameOverRectangle.visible = false
+//            gameOverRectangle.winVisible = false
+//            gameOverRectangle.gameoverVisible = false
+//            gameOverRectangle.pauseVisible = false
+//            noBtn.isPressed = false
+//            yesBtn.isPressed = false
+//           }
+//        }
+//    }
 
     onGameOver: {
         gameOverRectangle.winVisible = true
@@ -315,7 +315,7 @@ SceneBase {
         if(event.key === Qt.Key_Space){
            gameOverRectangle.pauseVisible = true
            gameOverRectangle.visible = true
-           rectangleTimer.start()
+           // rectangleTimer.start()
         }
     }
 
